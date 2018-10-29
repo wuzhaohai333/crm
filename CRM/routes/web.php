@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('login');
 });
 /** 桌面首页*/
-Route::any('/index', function () {
-    return view('index');
-});
+//Route::any('/index', function () {
+//    return view('index');
+//});
+Route::any('index','IndexController@index');
