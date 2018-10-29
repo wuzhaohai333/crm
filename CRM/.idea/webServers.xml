@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="30b19517-91b3-4b4a-a943-049718f3852e" name="根目录" url="http://180.76.162.234">
+        <fileTransfer host="180.76.162.234" port="22" accessType="SFTP" password="df8bdfeadfc6dfc3dfdfdfc6dfc3dfc6dfc3dfc4df9fdf98df9adf9adf9adf9a" username="root">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="f8f7a508-6947-42dc-88b6-de5d89ba5604" name="crm" url="http://180.76.162.234">
+        <fileTransfer host="180.76.162.234" port="22" rootFolder="/data/wwwroot/default/1804/CRM" accessType="SFTP" password="df8bdfeadfc6dfc3dfdfdfc6dfc3dfc6dfc3dfc4df9fdf98df9adf9adf9adf9a" username="root">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

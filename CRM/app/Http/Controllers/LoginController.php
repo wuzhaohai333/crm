@@ -43,7 +43,8 @@ class LoginController extends Controller
             echo "<script>alert('账号或密码有误');location.href=('/')</script>";
             exit;
         }
-        session('admin_info',$admin_info);
+        session(['admin_info'=>$admin_info]);//存入session
+
         echo "<script>alert('登录成功!')</script>";
         return redirect('/index');
     }

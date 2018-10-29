@@ -10,8 +10,8 @@ class CommonController extends Controller
     //初始化数据
     public function __construct()
     {
-        $this->middleware(function ($request,$next) {
 
+        $this->middleware(function ($request,$next) {
             if(!$request->session()->has('admin_info')){
                 echo "<script>alert('请先登录！');location.href=('/')</script>";
                 exit;

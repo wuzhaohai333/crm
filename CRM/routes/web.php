@@ -19,6 +19,8 @@ Route::any('/login', 'LoginController@login');
 /** 退出登录*/
 Route::any('/quit', 'LoginController@quit');
 
+Route::any('/a', 'IndexController@a');
+
 
 /** 桌面首页*/
 Route::any('/index', function () {
