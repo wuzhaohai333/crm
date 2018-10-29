@@ -74,6 +74,12 @@
 <div id="win10">
     <div class="desktop">
         <div id="win10-shortcuts" class="shortcuts-hidden">
+<<<<<<< HEAD
+            @foreach($data as $value)
+                <div class="shortcut" onclick="Win10.openUrl('http://www.crm.com/{{$value['power_url']}}','<img class=\'icon\' src=\'/win10ui/img/icon/win10.png\'/>{{$value['power_name']}}')">
+                <img class="icon" src="{{$value['power_img']}}"/>
+                <div class="title">{{$value['power_name']}}</div>
+=======
             <div class="shortcut" onclick="Win10.openUrl('http://win10ui.yuri2.cn','<img class=\'icon\' src=\'/win10ui/img/icon/win10.png\'/>Win10-UI官网')">
                 <img class="icon" src="../win10ui/img/icon/win10.png"/>
                 <div class="title">Win10-UI官网</div>
@@ -110,6 +116,7 @@
             <div class="shortcut" onclick='Win10.openUrl("win10ui.yuri2.cn/src/workshop.php","<i class=\"fa fa-gears  icon purple\"></i>创意工坊")'>
                 <i class="fa fa-gears  icon purple"></i>
                 <div class="title">创意工坊</div>
+>>>>>>> 94e489890189810d60739c1353317009ca619b79
             </div>
         </div>
         <div id="win10-desktop-scene"></div>
