@@ -19,3 +19,7 @@ Route::get('/', function () {
 //    return view('index');
 //});
 Route::any('index','IndexController@index');
+
+/**跟单管理*/
+#跟单列表
+Route::any('with','OddController@oddList');
