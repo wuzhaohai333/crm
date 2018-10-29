@@ -11,11 +11,13 @@
 |
 */
 /** 登录*/
-Route::get('/', function () {
+Route::any('/', function () {
     return view('login');
 });
 /** 执行登录*/
 Route::any('/login', 'LoginController@login');
+/** 退出登录*/
+Route::any('/quit', 'LoginController@quit');
 
 
 /** 桌面首页*/

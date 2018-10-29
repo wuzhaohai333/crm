@@ -134,7 +134,7 @@
                 shadeClose:true,
                 content: '<img width=\'300\' src=\'/win10ui/img/presentation/donation.jpg\' />'
             })"><i class="green icon fa fa-thumbs-up fa-fw"></i>捐赠</div>
-            <div class="item" onclick=" Win10.exit();"><i class="black icon fa fa-power-off fa-fw"></i>关闭</div>
+            <div class="item" onclick="quit_login()"><i class="black icon fa fa-power-off fa-fw"></i>关闭</div>
         </div>
         <div class="blocks">
             <div class="menu_group">
@@ -235,3 +235,10 @@
 </div>
 </body>
 </html>
+
+<script type="text/javascript">
+    //退出登录
+    function quit_login(){
+        location.href=('/quit');
+    }
+</script>
