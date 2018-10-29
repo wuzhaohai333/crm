@@ -11,15 +11,16 @@
 |
 */
 /** 登录*/
-Route::get('/', function () {
+Route::any('/', function () {
     return view('login');
 });
-/** 桌面首页*/
-//Route::any('/index', function () {
-//    return view('index');
-//});
-Route::any('index','IndexController@index');
+/** 执行登录*/
+Route::any('/login', 'LoginController@login');
+/** 退出登录*/
+Route::any('/quit', 'LoginController@quit');
 
-/**跟单管理*/
-#跟单列表
-Route::any('with','OddController@oddList');
+
+/** 桌面首页*/
+Route::any('/index', function () {
+    return view('index');
+});

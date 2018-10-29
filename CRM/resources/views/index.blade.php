@@ -74,12 +74,50 @@
 <div id="win10">
     <div class="desktop">
         <div id="win10-shortcuts" class="shortcuts-hidden">
+<<<<<<< HEAD
             @foreach($data as $value)
                 <div class="shortcut" onclick="Win10.openUrl('http://www.crm.com/{{$value['power_url']}}','<img class=\'icon\' src=\'/win10ui/img/icon/win10.png\'/>{{$value['power_name']}}')">
                 <img class="icon" src="{{$value['power_img']}}"/>
                 <div class="title">{{$value['power_name']}}</div>
+=======
+            <div class="shortcut" onclick="Win10.openUrl('http://win10ui.yuri2.cn','<img class=\'icon\' src=\'/win10ui/img/icon/win10.png\'/>Win10-UI官网')">
+                <img class="icon" src="../win10ui/img/icon/win10.png"/>
+                <div class="title">Win10-UI官网</div>
             </div>
-            @endforeach
+            <div class="shortcut" onclick="Win10.openUrl('https://yuri2.cn','<img class=\'icon\' src=\'/win10ui/img/icon/blogger.png\'/>尤里2号的博客')">
+                <img class="icon" src="../win10ui/img/icon/blogger.png"/>
+                <div class="title">Yuri2's Blog</div>
+            </div>
+            <div class="shortcut" onclick="Win10.openUrl('win10ui.yuri2.cn/src/doc.php','<img class=\'icon\' src=\'/win10ui/img/icon/doc.png\'/>在线文档')">
+                <img class="icon" src="../win10ui/img/icon/doc.png"/>
+                <div class="title">在线文档</div>
+            </div>
+            <div class="shortcut" onclick="window.open('https://github.com/yuri2peter/win10-ui')">
+                <img class="icon" src="../win10ui/img/icon/github.png"/>
+                <div class="title">github</div>
+            </div>
+            <div class="shortcut" onclick="Win10.openUrl('https://www.oschina.net/p/win10-ui','<img class=\'icon\' src=\'/win10ui/img/icon/kyzg.png\'/>开源中国（求支持~）')">
+                <img class="icon" src="../win10ui/img/icon/kyzg.png"/>
+                <div class="title">开源中国</div>
+            </div>
+            <div class="shortcut" onclick="window.open('https://github.com/yuri2peter/win10-ui/archive/master.zip')">
+                <img class="icon" src="../win10ui/img/icon/download.png"/>
+                <div class="title">快速获取</div>
+            </div>
+            <div class="shortcut" onclick='Win10.openUrl("/win10ui/login.html","<i class=\"fa fa-user icon black-green\"></i>示例登录页")'>
+                <i class="fa fa-user icon black-green"></i>
+                <div class="title">示例登录页</div>
+            </div>
+            <div class="shortcut win10-open-window" data-url="win10ui.yuri2.cn/src/contributor.php">
+                <i class="icon fa fa-fw fa-bank red" ></i>
+                <div class="title">名人堂</div>
+            </div>
+
+            <div class="shortcut" onclick='Win10.openUrl("win10ui.yuri2.cn/src/workshop.php","<i class=\"fa fa-gears  icon purple\"></i>创意工坊")'>
+                <i class="fa fa-gears  icon purple"></i>
+                <div class="title">创意工坊</div>
+>>>>>>> 94e489890189810d60739c1353317009ca619b79
+            </div>
         </div>
         <div id="win10-desktop-scene"></div>
     </div>
@@ -103,7 +141,7 @@
                 shadeClose:true,
                 content: '<img width=\'300\' src=\'/win10ui/img/presentation/donation.jpg\' />'
             })"><i class="green icon fa fa-thumbs-up fa-fw"></i>捐赠</div>
-            <div class="item" onclick=" Win10.exit();"><i class="black icon fa fa-power-off fa-fw"></i>关闭</div>
+            <div class="item" onclick="quit_login()"><i class="black icon fa fa-power-off fa-fw"></i>关闭</div>
         </div>
         <div class="blocks">
             <div class="menu_group">
@@ -204,3 +242,10 @@
 </div>
 </body>
 </html>
+
+<script type="text/javascript">
+    //退出登录
+    function quit_login(){
+        location.href=('/quit');
+    }
+</script>

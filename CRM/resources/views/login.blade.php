@@ -100,14 +100,19 @@
         <div class="win10-login-box-square">
             <img src="win10ui/img/avatar.jpg" class="content"/>
         </div>
-        <p style="font-size: 24px;color: white;text-align: center">游客</p>
-        <form target="_self" method="get" action="#">
+        <p style="font-size: 24px;color: white;text-align: center">请登录</p>
+        <form target="_self" method="post" action="/login">
+            @csrf
+            {{--滑块验证码--}}
+            {!! Geetest::render() !!}
+            <br>
             <!--用户名-->
-            <input type="text" placeholder="请输入登录名" class="login-username">
+            <input type="text" placeholder="请输入账户" name="login-username" class="login-username">
             <!--密码-->
-            <input type="password" placeholder="请输入密码" class="login-password">
+            <input type="password" placeholder="请输入密码"name="login-password"  class="login-password">
             <!--登陆按钮-->
             <input type="submit"  value="登录" id="btn-login" class="login-submit"/>
+
         </form>
     </div>
 </div>
