@@ -48,8 +48,14 @@ Route::any('/adminUpdate', 'AdminController@adminUpdate');
 /** 客户管理*/
 Route::any('/user', 'userController@user');
 
+
+/** 客户管理*/
+Route::any('/user', 'userController@user');
 /** 桌面首页*/
 Route::any('/index', 'IndexController@index');
-
 /** 跟单管理列表*/
 Route::any('/with','OddController@oddList');
+/** 根据地址pid查询所有地址*/
+Route::any('/userArea', 'UserController@userArea');
+/**客户添加*/
+Route::any('/userAdd', 'UserController@userAdd');
