@@ -186,8 +186,10 @@
                             <option value="4">显示</option>
                         </select>
                         所在地区
-                        <select name="adduser" class="int Select_Type"><option value="">请选择</option>
-                            <option value="1">河北</option>
+                        <select name="adduser" class="int Select_Type linkage"><option value="">请选择</option>
+                            @foreach($area as $k=>$v)
+                                <option value="{{$v->id}}">{{$v->area_name}}</option>
+                            @endforeach
                         </select>省
                         <select name="adduser" class="int Select_Type"><option value="">请选择</option>
                             <option value="1">邯郸</option>
@@ -232,8 +234,10 @@
                                 <option value="4">显示</option>
                             </select>
                             所在地区
-                            <select name="adduser" class="int Select_Type"><option value="">请选择</option>
-                                <option value="1">河北</option>
+                            <select name="adduser" class="int Select_Type linkage"><option value="">请选择</option>
+                                @foreach($area as $k=>$v)
+                                    <option value="{{$v->id}}">{{$v->area_name}}</option>
+                                @endforeach
                             </select>省
                             <select name="adduser" class="int Select_Type"><option value="">请选择</option>
                                 <option value="1">邯郸</option>
@@ -279,8 +283,10 @@
                                 <option value="4">显示</option>
                             </select>
                             所在地区
-                            <select name="adduser" class="int Select_Type"><option value="">请选择</option>
-                                <option value="1">河北</option>
+                            <select name="adduser" class="int Select_Type linkage"><option value="">请选择</option>
+                                @foreach($area as $k=>$v)
+                                    <option value="{{$v->id}}">{{$v->area_name}}</option>
+                                @endforeach
                             </select>省
                             <select name="adduser" class="int Select_Type"><option value="">请选择</option>
                                 <option value="1">邯郸</option>
@@ -326,8 +332,10 @@
                                 <option value="4">显示</option>
                             </select>
                             所在地区
-                            <select name="adduser" class="int Select_Type"><option value="">请选择</option>
-                                <option value="1">河北</option>
+                            <select name="adduser" class="int Select_Type linkage"><option value="">请选择</option>
+                                @foreach($area as $k=>$v)
+                                    <option value="{{$v->id}}">{{$v->area_name}}</option>
+                                @endforeach
                             </select>省
                             <select name="adduser" class="int Select_Type"><option value="">请选择</option>
                                 <option value="1">邯郸</option>
@@ -457,14 +465,14 @@
                                         所在地区
                                     </td>
                                     <td class="td_r_l">
-                                        <select name="Source" id="Select_Source">
+                                        <select name="Source" class="linkage" id="area1">
                                             <option value="">请选择</option>
                                             @foreach($area as $k=>$v)
                                             <option value="{{$v->id}}">{{$v->area_name}}</option>
                                             @endforeach
                                         </select>省
                                         &nbsp;
-                                        <select name="Source" id="Select_Source">
+                                        <select name="Source" id="area2">
                                             <option value="">请选择</option>
                                             <option value="电话营销">电话营销</option>
                                         </select>市
@@ -612,6 +620,24 @@
                 </div>
             </form>
             <script>
+                //地区联动
+                $('.linkage').change(function(){
+                    var pid=$(this).val();
+                    var _this=$(this);
+                    $.ajax({
+                        url:'userArea',
+                        type:'get',
+                        data:{pid:pid},
+                        dataType:'json',
+                        success:function(msg){
+                            var str="<option value=\"\">请选择</option>";
+                            for(var i in msg){
+                                str+="<option value='"+msg[i]['id']+"'>"+msg[i]['area_name']+"</option>"
+                            }
+                            _this.next().html(str);
+                        }
+                    });
+                });
                 $('#submit').click(function(){
                     if ($("#name").val()== ""){
                         layer.msg('客户名称不能为空！', {icon: 2});
