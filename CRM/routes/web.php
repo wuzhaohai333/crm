@@ -24,10 +24,10 @@ Route::any('/power', 'PowerController@power');
 Route::any('/powerAdd', 'PowerController@powerAdd');
 /** 权限数据表格  + 分页*/
 Route::any('/powerData', 'PowerController@powerData');
-
-
+/** 客户管理*/
+Route::any('/powerData', 'PowerController@powerData');
 /** 桌面首页*/
-Route::any('/index', 'IndexController@index');
+Route::any('/user', 'UserController@user');
 
 /** 跟单管理列表*/
 Route::any('/with','OddController@oddList');
