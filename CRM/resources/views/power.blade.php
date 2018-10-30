@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="utf-8">
     <title>layui</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/layui/css/layui.css"  media="all">
+    <script type="text/javascript" src="/win10ui/js/jquery-2.2.4.min.js"></script>
     <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
 </head>
 <body>
@@ -24,7 +26,8 @@
     <div class="layui-tab-content" style="height: 100px;">
         <div class="layui-tab-item layui-show">
             {{--权限添加的表单--}}
-            <form class="layui-form" action="">
+            <form class="layui-form">
+                @csrf
                 <div class="layui-form-item">
                     <label class="layui-form-label">权限名称：</label>
                     <div class="layui-input-block">
@@ -36,7 +39,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">权限url：</label>
                     <div class="layui-input-inline">
-                        <input style="width:300px;" type="text" name="url" required lay-verify="url" placeholder="请输入网址" autocomplete="off" class="layui-input">
+                        <input style="width:300px;" type="text" name="url" required lay-verify="required" placeholder="请输入网址" autocomplete="off" class="layui-input">
                     </div>
                     <!--<div class="layui-form-mid layui-word-aux">请输入品牌网址</div>&lt;!&ndash;辅助文字&ndash;&gt;-->
                 </div>
@@ -44,11 +47,23 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">权限图像：</label>
                     <div class="layui-input-inline">
-                        <input style="width:300px;" type="text" name="img" required lay-verify="url" placeholder="请输入图像网址" autocomplete="off" class="layui-input">
+                        <input style="width:300px;" type="text" name="img" required lay-verify="required" placeholder="请输入图像网址" autocomplete="off" class="layui-input">
                     </div>
 
                 </div>
 
+                <div class="layui-form-item" style="width: 410px">
+                    <label class="layui-form-label">父级权限：</label>
+                    <div class="layui-input-block">
+                        <select name="parent" lay-verify="required">
+                            <option value="">请选择一个父级权限</option>
+                            <option value="a">顶级</option>
+                            @foreach($power as $v)
+                                <option value="{{$v['id']}}">{{$v['power_name']}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">是否启用：</label>
                     <div class="layui-input-block">
@@ -72,7 +87,13 @@
         </div>
     </div>
 </div>
-
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+</script>
 
 <script src="/layui/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
@@ -87,13 +108,14 @@
                 url:"/powerAdd",
                 data:data.field,
                 async:false,//异步
+                dataType:'json',
                 success:function(msg){
-                    if(msg.status == 0){
-                        layer.msg(msg.msg,{icon:5});
+                    if(msg.code == 0){
+                        layer.msg(msg.font,{icon:5});
                         return false;
-                    }else if(msg.status == 1000){
+                    }else if(msg.code == 1000){
                         layer.confirm(
-                                msg.msg,//提示的文字
+                                msg.font,//提示的文字
                                 {
                                     //两个按钮
                                     btn:['继续添加','查看权限列表'],
@@ -109,7 +131,7 @@
                         );
                     }
                 },
-                dataType:'json',
+
             });
 //                    return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
         });
