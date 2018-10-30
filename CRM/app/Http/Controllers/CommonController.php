@@ -30,14 +30,20 @@ class CommonController extends Controller
     public function hint($font,$code){
         return ['font'=>$font,'code'=>$code];
     }
-    //获取今日新增
-    public function todayAdd($table,$where){
+    //获取$x天新增
+    /**
+     * @param $table  表名
+     * @param $where  条件
+     * @param int $day 天数
+     * @return array
+     */
+    public function todayAdd($table,$where,$day=1){
         $name=substr($table,Strpos($table,'_')+1).'_ctime';
         $data=DB::table($table)->where($where)->get()->toArray();
         $arr=[];
         foreach ($data as $k=>$v) {
             echo time()-$v->$name.'/';
-            if(time()-$v->$name<86400){
+            if(time()-$v->$name<86400*$day){
                 $arr[]=$v;
             }
         }
