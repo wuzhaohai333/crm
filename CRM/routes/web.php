@@ -25,9 +25,9 @@ Route::any('/powerAdd', 'PowerController@powerAdd');
 /** 权限数据表格  + 分页*/
 Route::any('/powerData', 'PowerController@powerData');
 /** 客户管理*/
-Route::any('/powerData', 'PowerController@powerData');
+Route::any('/user', 'userController@user');
 /** 桌面首页*/
-Route::any('/user', 'UserController@user');
+Route::any('/index', 'IndexController@index');
 
 /** 跟单管理列表*/
 Route::any('/with','OddController@oddList');
