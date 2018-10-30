@@ -9,7 +9,9 @@ class IndexController extends CommonController
 {
     /** 桌面首页*/
     public function index(){
-        return view('index');
+        $data=DB::table('crm_power')->where(['power_status'=>1])->get()->toArray();
+        //$data=json_decode($data,true);
+        return view('index',['data'=>$data]);
     }
 
 }
