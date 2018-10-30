@@ -33,3 +33,5 @@ Route::any('/index', 'IndexController@index');
 Route::any('/with','OddController@oddList');
 /** 根据地址pid查询所有地址*/
 Route::any('/userArea', 'UserController@userArea');
+/**客户添加*/
+Route::any('/userAdd', 'UserController@userAdd');

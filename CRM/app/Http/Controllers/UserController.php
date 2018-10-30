@@ -20,4 +20,17 @@ class UserController extends CommonController
         $arr=DB::table('crm_area')->where(['pid'=>$pid])->get()->toArray();
         echo json_encode($arr);
     }
+    //客户添加
+    public function userAdd(){
+        $arr=Input::post();
+        $arr['user_ctime']=time();
+        $arr['user_status']=1;
+        $tmp='lI7AfRSdiZMZYPr94Oo0mmG5rh7SDtaSjMVAMxXe';
+        foreach( $arr as $k=>$v) {
+            if($tmp == $v) unset($arr[$k]);
+        }
+        //print_r($arr);
+        $res=DB::table('crm_user')->insert($arr);
+        echo $res;
+    }
 }

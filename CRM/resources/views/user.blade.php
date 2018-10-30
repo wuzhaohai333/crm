@@ -443,10 +443,10 @@
                                     <td class="td_r_l">
                                         <select name="type" id="type">
                                             <option value="">请选择</option>
-                                            <option value="已成交">已成交</option>
-                                            <option value="未成交">未成交</option>
-                                            <option value="跟进中">跟进中</option>
-                                            <option value="有意向">有意向</option>
+                                            <option value="1">已成交</option>
+                                            <option value="2">未成交</option>
+                                            <option value="3">跟进中</option>
+                                            <option value="4">有意向</option>
                                         </select>
                                         &nbsp;
                                     </td>
@@ -474,7 +474,6 @@
                                         &nbsp;
                                         <select name="Source" id="area2">
                                             <option value="">请选择</option>
-                                            <option value="电话营销">电话营销</option>
                                         </select>市
                                         &nbsp;
                                     </td>
@@ -483,7 +482,7 @@
                                     </td>
                                     <td class="td_r_l">
 
-                                        <input name="Address" type="text" class="int" id="Address" size="30">
+                                        <input name="Address" type="text" class="int" id="address" size="30">
                                         邮编：
                                         <input name="Zip" type="text" class="int" id="Zip" size="10" maxlength="6" onkeyup="this.value=this .value.replace(/\D/gi,&quot;&quot;)">
                                         <span class="info_help vtip" title="限：数字">&nbsp;</span>
@@ -494,13 +493,13 @@
                                         客户级别
                                     </td>
                                     <td class="td_r_l">
-                                        <select name="Start" id="Select_Star">
+                                        <select name="Start" id="start">
                                             <option value="">请选择</option>
-                                            <option value="★★★★★">★★★★★</option>
-                                            <option value="★★★★">★★★★</option>
-                                            <option value="★★★">★★★</option>
-                                            <option value="★★">★★</option>
-                                            <option value="★">★</option>
+                                            <option value="1">★★★★★</option>
+                                            <option value="2">★★★★</option>
+                                            <option value="3">★★★</option>
+                                            <option value="4">★★</option>
+                                            <option value="5">★</option>
                                         </select>
                                         &nbsp;
                                     </td>
@@ -508,12 +507,12 @@
                                         客户来源
                                     </td>
                                     <td class="td_r_l">
-                                        <select name="Source" id="Select_Source">
+                                        <select name="Source" id="source">
                                             <option value="">请选择</option>
-                                            <option value="电话营销">电话营销</option>
-                                            <option value="搜索引擎">搜索引擎</option>
-                                            <option value="朋友介绍">朋友介绍</option>
-                                            <option value="其它来源">其它来源</option>
+                                            <option value="1">电话营销</option>
+                                            <option value="2">搜索引擎</option>
+                                            <option value="3">朋友介绍</option>
+                                            <option value="3">其它来源</option>
                                         </select>
                                         &nbsp;
                                     </td>
@@ -532,8 +531,8 @@
                                     <td class="td_r_l">
                                         <select name="trade" id="trade">
                                             <option value="">请选择</option>
-                                            <option value="批发零售" id="67">批发零售</option>
-                                            <option value="县级批发" id="68">县级批发</option>
+                                            <option value="1" id="67">批发零售</option>
+                                            <option value="2" id="68">县级批发</option>
 
                                         </select>
                                     </td>
@@ -553,11 +552,11 @@
                                         职位：
                                         <select name="job" id="job">
                                             <option value="">请选择</option>
-                                            <option value="董事长">董事长</option>
-                                            <option value="总经理">总经理</option>
-                                            <option value="负责人">负责人</option>
-                                            <option value="业务员">业务员</option>
-                                            <option value="技术员">技术员</option>
+                                            <option value="1">董事长</option>
+                                            <option value="2">总经理</option>
+                                            <option value="3">负责人</option>
+                                            <option value="4">业务员</option>
+                                            <option value="5">技术员</option>
                                         </select>
                                         &nbsp;
                                     </td>
@@ -613,7 +612,7 @@
                         <tbody><tr>
                             <td valign="top" class="td_n Bottom_pd " >
                                 <input type="button" style="background: aquamarine;" id="submit" class="btn2 btnbaoc" value="保存">
-                                <input name="Back" type="button" id="Back" class="btn2 btnguanb" value="关闭" onclick="art.dialog.close ();">
+                                <input  name="Back" type="button" id="Back" class="btn2 btnguanb" value="关闭" onclick="art.dialog.close ();">
                             </td>
                         </tr>
                 </tbody></table></div>
@@ -639,62 +638,121 @@
                     });
                 });
                 $('#submit').click(function(){
-                    if ($("#name").val()== ""){
+                    $(this).attr('disabled',true);
+                    var name=$("#name").val();//用户名称
+                    var type=$("#type").val();//用户类型
+                    var area1=$("#area1").val();//用户所在省
+                    var area2=$("#area2").val();//用户所在市
+                    var address=$("#address").val();//用户详细地址
+                    var linkman=$("#linkman").val();//联系人
+                    var job=$("#job").val();//联系人职位
+                    var mobile=$("#mobile").val();//手机号码
+                    var qq=$("#qq").val();//qq号码
+                    var trade=$("#trade").val();//所属行业
+                    var website=$("#website").val();//公司
+                    var email=$("#email").val();//电子邮件
+                    var start=$("#start").val();//客户级别
+                    var source=$("#source").val();//客户来源
+                    var remark=$("textarea").html();//备注
+                    if (name== ""){
                         layer.msg('客户名称不能为空！', {icon: 2});
                         return false;
                     }
-                    if ($("#type").val()== ""){
+
+                    if (type== ""){
                         layer.msg('客户类型不能为空！', {icon: 2});
                         return false;
                     }
-                    if ($("#area1").val()== ""){
+
+                    if (area1== ""){
                         layer.msg('所在地区不能为空！', {icon: 2});
                         return false;
                     }
-                    if ($("#area2").val()== ""){
+
+                    if (area2== ""){
                         layer.msg('所在地区不能为空！', {icon: 2});
                         return false;
                     }
-                    if ($("#address").val()== ""){
-                        layer.msg('所在地区不能为空！', {icon: 2});
+
+                    if (address== ""){
+                        layer.msg('详细地址不能为空！', {icon: 2});
                         return false;
                     }
-                    if ($("#linkman").val()== ""){
+
+                    if (linkman== ""){
                         layer.msg('联系人不能为空！', {icon: 2});
                         return false;
                     }
-                    if ($("#job").val()== ""){
+                    if (job== ""){
                         layer.msg('职位不能为空！', {icon: 2});
                         return false;
                     }
-                    if ($("#mobile").val()== ""){
+                    if (mobile== ""){
                         layer.msg('手机号码不能为空！', {icon: 2});
                         return false;
                     }
-                    if ($("#qq").val()== ""){
+
+                    if (qq== ""){
                         layer.msg('qq号码不能为空！', {icon: 2});
                         return false;
                     }
-                    if ($("#trade").val()== ""){
+                    if (trade== ""){
                         layer.msg('所属行业不能为空！', {icon: 2});
                         return false;
                     }
-                    if ($("#website").val()== ""){
+
+                    if (website== ""){
                         layer.msg('公司网址不能为空！', {icon: 2});
                         return false;
                     }
-                    if ($("#email").val()== ""){
+                    if (email== ""){
                         layer.msg('电子邮件不能为空！', {icon: 2});
                         return false;
                     }
-                    if ($("#start").val()== ""){
+
+                    if (start== ""){
                         layer.msg('客户级别不能为空！', {icon: 2});
                         return false;
                     }
-                    if ($("#source").val()== ""){
+
+                    if (source== ""){
                         layer.msg('客户来源不能为空！', {icon: 2});
                         return false;
                     }
+                    $.ajax({
+                        url:'userAdd',
+                        type:'post',
+                        data:{
+                            '_token':'{{csrf_token()}}',
+                            user_name:name,
+                            user_type:type,
+                            user_province:area1,
+                            user_address:area2,
+                            user_addresss:address,
+                            user_rank:start,
+                            user_origin:source,
+                            user_firm_web:website,
+                            user_trade:trade,
+                            user_linkman:linkman,
+                            user_post:job,
+                            user_qq:qq,
+                            user_email:email,
+                            user_comment:remark
+                        },
+                        success:function(msg){
+                            if(msg==1){
+                                layer.msg('保存成功', {
+                                    icon: 1,
+                                    time: 2000 //2秒关闭（如果不配置，默认是3秒）
+                                }, function(){
+                                    window.location.href=history.go(0);
+                                });
+
+                            }else{
+                                window.location.href=history.go(0);
+                            }
+                        }
+                    });
                 });
 
             </script>
