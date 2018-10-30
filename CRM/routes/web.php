@@ -24,6 +24,8 @@ Route::any('/power', 'PowerController@power');
 Route::any('/powerAdd', 'PowerController@powerAdd');
 /** 权限数据表格  + 分页*/
 Route::any('/powerData', 'PowerController@powerData');
+/** 权限修改（即点即改）*/
+Route::any('/powerUpdate', 'PowerController@powerUpdate');
 
 
 /** 桌面首页*/

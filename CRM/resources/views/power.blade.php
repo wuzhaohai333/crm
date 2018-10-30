@@ -17,7 +17,6 @@
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
     <legend>权限管理</legend>
 </fieldset>
-
 <div class="layui-tab layui-tab-card">
     <ul class="layui-tab-title">
         <li class="layui-this">权限添加</li>
@@ -84,16 +83,15 @@
 
         <div class="layui-tab-item">
             {{--权限列表--}}
-            <table class="layui-table" lay-data="{height:315, url:'/powerData', page:true, id:'test'}" lay-filter="test">
+            <table class="layui-table" lay-data="{height:315,url:'/powerData',page:true,id:'test',limit:3,limits:[3,5,10,15]}" lay-filter="test">
                 <thead>
                 <tr>
                     <th lay-data="{field:'id', width:80, sort: true}">ID</th>
-                    <th lay-data="{field:'power_name', width:80}">权限名</th>
-                    <th lay-data="{field:'power_url', width:80, sort: true}">url</th>
+                    <th lay-data="{field:'power_name', width:80,edit:true}">权限名</th>
+                    <th lay-data="{field:'power_url', width:80,edit:true}">url</th>
                     <th lay-data="{field:'power_ctime'}">添加时间</th>
                     <th lay-data="{field:'power_utime'}">最后一次修改时间</th>
-                    <th lay-data="{field:'power_status', sort: true}">是否启用</th>
-                    <th lay-data="{field:'wealth', sort: true}">财富</th>
+                    <th lay-data="{field:'power_status'}">是否启用</th>
                 </tr>
                 </thead>
             </table>
@@ -111,10 +109,12 @@
 <script src="/layui/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
-    layui.use(['element','form','table'], function(){
+    layui.use(['element','form','table','layer'], function(){
+        var layer = layui.layer;//弹出层
         var element = layui.element;//选项卡
         var form = layui.form;//表单
         var table = layui.table;//数据表格
+        //监听表单提交
         form.on('submit(*)',function(data){
 //                    console.log(data.field);  //表单所有值
             $.ajax({
@@ -148,6 +148,26 @@
 
             });
 //                    return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+        //监听单元格编辑
+        table.on('edit(test)', function(obj){ //注：edit是固定事件名，test是table原始容器的属性 lay-filter="对应的值"
+            console.log(obj.value); //得到修改后的值
+            console.log(obj.field); //当前编辑的字段名
+            console.log(obj.data); //所在行的所有相关数据
+            $.ajax({
+                type:'post',
+                url:"/powerUpdate",
+                data:{info:obj},
+                async:false,//异步
+                dataType:'json',
+                success:function(msg){
+                    if(msg.code == 1000){
+                        layer.msg(msg.font);
+                    }
+                },
+
+            });
+
         });
 
     });

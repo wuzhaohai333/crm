@@ -15,11 +15,22 @@ class PowerController extends CommonController
     }
     /** 数据表格  分页*/
     public function powerData(Request $request){
-        $p = $request -> input('page');//当前页码
+        $p = empty($request -> input('page'))?1:$request -> input('page');//当前页码
         $p_num = $request -> input('limit');//每页显示条数
+        $count = DB::table('crm_power') -> count();//总条数
         #查出所有的权限（列表展示）
-        $powerList = json_decode(json_encode(DB::table('crm_power') -> where(['power_status' => 1]) -> get()),true);//品牌表数据
-        $count = DB::table('crm_power') -> count();
+        $powerList = json_decode(json_encode(DB::table('crm_power') -> where(['power_status' => 1])  -> forPage($p,$p_num) -> get()),true);//权限表数据
+        foreach($powerList as &$v){
+            //处理状态
+            if($v['power_status'] == 1){
+                $v['power_status'] = '已启用';
+            }else{
+                $v['power_status'] = '未启用';
+            }
+            //处理时间戳
+            $v['power_ctime'] = date('Y-m-d H:i:s',$v['power_ctime']);
+            $v['power_utime'] = empty($v['power_utime'])?'暂未修改':date('Y-m-d H:i:s',$v['power_utime']);
+        }
         echo json_encode([
             'code' =>0,
             'msg' =>'',
@@ -75,6 +86,19 @@ class PowerController extends CommonController
             }else{
                 return ['font'=>'添加异常','code'=>0];
             }
+        }
+
+    }
+    /** 权限修改（即点即改）*/
+    public function powerUpdate(Request $request){
+        $field = $request -> input('info')['field'];//修改的字段
+        $value = $request -> input('info')['value'];//修改的新值
+        $id = $request -> input('info')['data']['id'];//修改的id
+        $updateRes = DB::table('crm_power')
+            -> where(['id' => $id])
+            -> update([$field => $value]);
+        if($updateRes){
+            return ['code' => 1000,'font' => '修改成功！'];
         }
 
     }
