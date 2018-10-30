@@ -24,16 +24,16 @@ Route::any('/power', 'PowerController@power');
 Route::any('/powerAdd', 'PowerController@powerAdd');
 /** 权限数据表格  + 分页*/
 Route::any('/powerData', 'PowerController@powerData');
-<<<<<<< HEAD
+
 /** 权限修改（即点即改）*/
 Route::any('/powerUpdate', 'PowerController@powerUpdate');
 
 
-=======
+
 /** 客户管理*/
 Route::any('/user', 'userController@user');
->>>>>>> ac9d381948be34ec467d4da9a57e65e1ad3fa7d1
-/** 桌面首页*/
+
+
 Route::any('/index', 'IndexController@index');
 
 /** 跟单管理列表*/

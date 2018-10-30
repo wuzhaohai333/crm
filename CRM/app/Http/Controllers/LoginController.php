@@ -47,6 +47,18 @@ class LoginController extends Controller
 
         echo "<script>alert('登录成功!')</script>";
         return redirect('/index');
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
     //退出登录
