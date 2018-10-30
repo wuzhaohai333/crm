@@ -11,5 +11,9 @@ class PowerController extends CommonController
     public function power(){
         return view('power');
     }
+    /** 权限添加*/
+    public function powerAdd(){
+
+    }
 
 }

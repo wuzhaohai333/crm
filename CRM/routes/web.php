@@ -20,6 +20,8 @@ Route::any('/login', 'LoginController@login');
 Route::any('/quit', 'LoginController@quit');
 /** 权限管理*/
 Route::any('/power', 'PowerController@power');
+/** 权限添加*/
+Route::any('/powerAdd', 'PowerController@powerAdd');
 
 
 /** 桌面首页*/
