@@ -24,3 +24,6 @@ Route::any('/power', 'PowerController@power');
 
 /** 桌面首页*/
 Route::any('/index', 'IndexController@index');
+
+/** 跟单管理列表*/
+Route::any('/odd','OddController@oddList');

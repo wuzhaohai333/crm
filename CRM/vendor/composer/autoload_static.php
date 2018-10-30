@@ -94,6 +94,10 @@ class ComposerStaticInitb0daa34ae1b8802772ba0bd2885f3c30
         array (
             'Illuminate\\' => 11,
         ),
+        'G' => 
+        array (
+            'Germey\\Geetest\\' => 15,
+        ),
         'F' => 
         array (
             'Fideloper\\Proxy\\' => 16,
@@ -259,6 +263,10 @@ class ComposerStaticInitb0daa34ae1b8802772ba0bd2885f3c30
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate',
         ),
+        'Germey\\Geetest\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/germey/geetest/src',
+        ),
         'Fideloper\\Proxy\\' => 
         array (
             0 => __DIR__ . '/..' . '/fideloper/proxy/src',
@@ -348,7 +356,10 @@ class ComposerStaticInitb0daa34ae1b8802772ba0bd2885f3c30
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
+        'App\\Http\\Controllers\\CommonController' => __DIR__ . '/../..' . '/app/Http/Controllers/CommonController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\IndexController' => __DIR__ . '/../..' . '/app/Http/Controllers/IndexController.php',
+        'App\\Http\\Controllers\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/LoginController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\CheckForMaintenanceMode' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckForMaintenanceMode.php',
@@ -930,6 +941,11 @@ class ComposerStaticInitb0daa34ae1b8802772ba0bd2885f3c30
         'Faker\\ValidGenerator' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/ValidGenerator.php',
         'Fideloper\\Proxy\\TrustProxies' => __DIR__ . '/..' . '/fideloper/proxy/src/TrustProxies.php',
         'Fideloper\\Proxy\\TrustedProxyServiceProvider' => __DIR__ . '/..' . '/fideloper/proxy/src/TrustedProxyServiceProvider.php',
+        'Germey\\Geetest\\Geetest' => __DIR__ . '/..' . '/germey/geetest/src/Geetest.php',
+        'Germey\\Geetest\\GeetestCaptcha' => __DIR__ . '/..' . '/germey/geetest/src/GeetestCaptcha.php',
+        'Germey\\Geetest\\GeetestController' => __DIR__ . '/..' . '/germey/geetest/src/GeetestController.php',
+        'Germey\\Geetest\\GeetestLib' => __DIR__ . '/..' . '/germey/geetest/src/GeetestLib.php',
+        'Germey\\Geetest\\GeetestServiceProvider' => __DIR__ . '/..' . '/germey/geetest/src/GeetestServiceProvider.php',
         'Hamcrest\\Arrays\\IsArray' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Arrays/IsArray.php',
         'Hamcrest\\Arrays\\IsArrayContaining' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Arrays/IsArrayContaining.php',
         'Hamcrest\\Arrays\\IsArrayContainingInAnyOrder' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Arrays/IsArrayContainingInAnyOrder.php',
