@@ -24,15 +24,30 @@ Route::any('/power', 'PowerController@power');
 Route::any('/powerAdd', 'PowerController@powerAdd');
 /** 权限数据表格  + 分页*/
 Route::any('/powerData', 'PowerController@powerData');
-<<<<<<< HEAD
 /** 权限修改（即点即改）*/
 Route::any('/powerUpdate', 'PowerController@powerUpdate');
+/** 角色管理*/
+Route::any('/role', 'RoleController@role');
+/** 角色添加*/
+Route::any('/roleAdd', 'RoleController@roleAdd');
+/** 角色数据表格  + 分页*/
+Route::any('/roleData', 'RoleController@roleData');
+/** 角色修改（即点即改）*/
+Route::any('/roleUpdate', 'RoleController@roleUpdate');
+/** 管理员管理*/
+Route::any('/admin', 'AdminController@admin');
+/** 管理员添加*/
+Route::any('/adminAdd', 'AdminController@adminAdd');
+/** 管理员数据表格  + 分页*/
+Route::any('/adminData', 'AdminController@adminData');
+/** 管理员修改（即点即改）*/
+Route::any('/adminUpdate', 'AdminController@adminUpdate');
 
 
-=======
+
 /** 客户管理*/
 Route::any('/user', 'userController@user');
->>>>>>> ac9d381948be34ec467d4da9a57e65e1ad3fa7d1
+
 /** 桌面首页*/
 Route::any('/index', 'IndexController@index');
 
