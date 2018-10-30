@@ -30,4 +30,4 @@ Route::any('/powerData', 'PowerController@powerData');
 Route::any('/index', 'IndexController@index');
 
 /** 跟单管理列表*/
-Route::any('/odd','OddController@oddList');
+Route::any('/with','OddController@oddList');
