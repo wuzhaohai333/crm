@@ -11,15 +11,15 @@ class CommonController extends Controller
     public function __construct()
     {
 
-        $this->middleware(function ($request,$next) {
-            if(!$request->session()->has('admin_info')){
-                echo "<script>alert('请先登录！');location.href=('/')</script>";
-                exit;
-            }
-//            $request->merge(['userinfo' => $arr]); //合并参数 在控制器中可以使用 request()->get('userinfo') 获取
-//            $request->attributes->add(['userinfo' => $arr]);//添加参数  在控制器中可以使用request()->get('userinfo') 获取
-            return $next($request);
-        });
+//        $this->middleware(function ($request,$next) {
+//            if(!$request->session()->has('admin_info')){
+//                echo "<script>alert('请先登录！');location.href=('/')</script>";
+//                exit;
+//            }
+////            $request->merge(['userinfo' => $arr]); //合并参数 在控制器中可以使用 request()->get('userinfo') 获取
+////            $request->attributes->add(['userinfo' => $arr]);//添加参数  在控制器中可以使用request()->get('userinfo') 获取
+//            return $next($request);
+//        });
     }
 
     //获取员工id

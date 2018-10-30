@@ -22,6 +22,8 @@ Route::any('/quit', 'LoginController@quit');
 Route::any('/power', 'PowerController@power');
 /** 权限添加*/
 Route::any('/powerAdd', 'PowerController@powerAdd');
+/** 权限数据表格  + 分页*/
+Route::any('/powerData', 'PowerController@powerData');
 
 
 /** 桌面首页*/

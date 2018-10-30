@@ -11,9 +11,21 @@ class PowerController extends CommonController
     public function power(){
         #只查最顶级权限(添加时下拉框使用)
         $power_top = json_decode(json_encode(DB::table('crm_power') -> where(['power_level' => 1,'power_status' => 1]) -> get()),true);
+        return view('power',['power'=> $power_top]);
+    }
+    /** 数据表格  分页*/
+    public function powerData(Request $request){
+        $p = $request -> input('page');//当前页码
+        $p_num = $request -> input('limit');//每页显示条数
         #查出所有的权限（列表展示）
-        $powerList = json_decode(json_encode(DB::table('crm_power') -> where(['power_status' => 1]) -> get()),true);
-        return view('power',['power'=> $power_top,'powerList'=>$powerList]);
+        $powerList = json_decode(json_encode(DB::table('crm_power') -> where(['power_status' => 1]) -> get()),true);//品牌表数据
+        $count = DB::table('crm_power') -> count();
+        echo json_encode([
+            'code' =>0,
+            'msg' =>'',
+            'count' => $count,
+            'data' => $powerList
+        ]);
     }
     /** 权限添加*/
     public function powerAdd(Request $request){
