@@ -84,7 +84,7 @@ class AdminController extends CommonController
                 DB::beginTransaction();//开启事务
                 //添加管理员信息
                 $arr = [
-                    'admin_account' => $admin_name,
+                    'admin_accont' => $admin_name,
                     'admin_pwd' => 'LiuLiLin666',
                     'admin_tel' => $admin_phone,
                     'admin_email' => $admin_email,
@@ -97,8 +97,7 @@ class AdminController extends CommonController
                 if(!$role_id){
                     throw new \Exception('管理员数据写入失败');
                 }
-                $admin_info = json_decode(json_encode(DB::table('crm_admin') -> where(['id' => $admin_id]) -> first()),true);
-                $updateRes = DB::table('crm_admin') -> where(['id' => $admin_id]) -> update(['admin_pwd' => md5($admin_pwd.$admin_info['id'])]);
+                $updateRes = DB::table('crm_admin') -> where(['id' => $admin_id]) -> update(['admin_pwd' => md5($admin_pwd.$admin_id)]);
                 if(!$updateRes){
                     throw new \Exception('密码****');
                 }

@@ -82,7 +82,7 @@
                             </fieldset>
                         @endforeach
                     </div>
-
+                </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">是否启用：</label>
                     <div class="layui-input-block">
@@ -91,7 +91,6 @@
 
                     </div>
                 </div>
-
                 <div class="layui-form-item">
                     <div class="layui-input-block">
                         <button type="button" class="layui-btn" lay-submit lay-filter="*">立即提交</button>
@@ -107,8 +106,9 @@
                 <thead>
                 <tr>
                     <th lay-data="{field:'id', width:80, sort: true}">ID</th>
-                    <th lay-data="{field:'admin_name', width:80,edit:true}">管理员名</th>
-                    <th lay-data="{field:'admin_url', width:80,edit:true}">url</th>
+                    <th lay-data="{field:'admin_accont', width:80,edit:true}">管理员账号</th>
+                    <th lay-data="{field:'admin_tel', width:80,edit:true}">联系方式</th>
+                    <th lay-data="{field:'admin_email', width:80,edit:true}">邮箱</th>
                     <th lay-data="{field:'admin_ctime'}">添加时间</th>
                     <th lay-data="{field:'admin_utime'}">最后一次修改时间</th>
                     <th lay-data="{field:'admin_status'}">是否启用</th>
