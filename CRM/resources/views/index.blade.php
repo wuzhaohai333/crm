@@ -74,12 +74,7 @@
 <div id="win10">
     <div class="desktop">
         <div id="win10-shortcuts" class="shortcuts-hidden">
-<<<<<<< HEAD
-            @foreach($data as $value)
-                <div class="shortcut" onclick="Win10.openUrl('http://www.crm.com/{{$value['power_url']}}','<img class=\'icon\' src=\'/win10ui/img/icon/win10.png\'/>{{$value['power_name']}}')">
-                <img class="icon" src="{{$value['power_img']}}"/>
-                <div class="title">{{$value['power_name']}}</div>
-=======
+
             <div class="shortcut" onclick="Win10.openUrl('http://win10ui.yuri2.cn','<img class=\'icon\' src=\'/win10ui/img/icon/win10.png\'/>Win10-UI官网')">
                 <img class="icon" src="../win10ui/img/icon/win10.png"/>
                 <div class="title">Win10-UI官网</div>
@@ -94,7 +89,7 @@
             </div>
             <div class="shortcut" onclick="window.open('https://github.com/yuri2peter/win10-ui')">
                 <img class="icon" src="../win10ui/img/icon/github.png"/>
-                <div class="title">github</div>
+                <div class="title">角色管理</div>
             </div>
             <div class="shortcut" onclick="Win10.openUrl('https://www.oschina.net/p/win10-ui','<img class=\'icon\' src=\'/win10ui/img/icon/kyzg.png\'/>开源中国（求支持~）')">
                 <img class="icon" src="../win10ui/img/icon/kyzg.png"/>
@@ -106,17 +101,17 @@
             </div>
             <div class="shortcut" onclick='Win10.openUrl("/win10ui/login.html","<i class=\"fa fa-user icon black-green\"></i>示例登录页")'>
                 <i class="fa fa-user icon black-green"></i>
-                <div class="title">示例登录页</div>
+                <div class="title">员工管理</div>
             </div>
             <div class="shortcut win10-open-window" data-url="win10ui.yuri2.cn/src/contributor.php">
                 <i class="icon fa fa-fw fa-bank red" ></i>
                 <div class="title">名人堂</div>
             </div>
 
-            <div class="shortcut" onclick='Win10.openUrl("win10ui.yuri2.cn/src/workshop.php","<i class=\"fa fa-gears  icon purple\"></i>创意工坊")'>
+            <div class="shortcut" onclick='Win10.openUrl("/power")'>
                 <i class="fa fa-gears  icon purple"></i>
-                <div class="title">创意工坊</div>
->>>>>>> 94e489890189810d60739c1353317009ca619b79
+                <div class="title">权限管理</div>
+
             </div>
         </div>
         <div id="win10-desktop-scene"></div>
@@ -241,11 +236,19 @@
     </div>
 </div>
 </body>
+
+<form id="form" class="layui-form" action="" style="margin-top: 100px">
 </html>
+
+
+
+
 
 <script type="text/javascript">
     //退出登录
     function quit_login(){
         location.href=('/quit');
     }
+
+
 </script>

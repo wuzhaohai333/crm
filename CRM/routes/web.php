@@ -18,11 +18,9 @@ Route::any('/', function () {
 Route::any('/login', 'LoginController@login');
 /** 退出登录*/
 Route::any('/quit', 'LoginController@quit');
-
-Route::any('/a', 'IndexController@a');
+/** 权限管理*/
+Route::any('/power', 'PowerController@power');
 
 
 /** 桌面首页*/
-Route::any('/index', function () {
-    return view('index');
-});
+Route::any('/index', 'IndexController@index');
