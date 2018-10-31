@@ -199,7 +199,78 @@
                         <input type="button" class="btn1 btnxiug layui-btn layui-btn-sm" value="导出" onclick="window.location.href=&quot;http://phpcrm.tutula.cn/index.php/customer/excel?mobile=&amp;type=&amp;start=&amp;adduser=&amp;linkman=&amp;state=&amp;tel=&amp;timetype=&amp;source=&amp;trade=&amp;address=&amp;keyword=&amp;sttdate=&amp;enddate=&amp;area1=&amp;area2=&quot;">
                     </td>
                 </tr>
-                </tbody></table></div>
+                </tbody>
+                <table id="demo" lay-filter="test"></table>
+                <script type="text/html" id="barDemo">
+                    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                </script>
+                <script src="/layui/layui.js"></script>
+                <script>
+                    layui.use('table', function(){
+                        var table = layui.table;
+
+                        //第一个实例
+                        table.render({
+                            elem: '#demo'
+                            ,height: 312
+                            ,url: 'userList' //数据接口
+                            ,page: true //开启分页
+                            ,cols: [[ //表头
+                                {field: 'id', title: '编号', width:80, fixed: 'left'}
+                                ,{field: 'user_name', title: '客户名称', width:80}
+                                ,{field: 'user_province', title: '所在省地区', width:110 }
+                                ,{field: 'user_address', title: '所在市地区', width:110 }
+                                ,{field: 'user_addresss', title: '所在区/县', width:110}
+                                ,{field: 'user_qq', title: '联系人QQ', width: 110}
+                                ,{field: 'user_trade', title: '所属行业', width: 100}
+                                ,{field: 'user_rank', title: '客户级别', width: 100}
+                                ,{field: 'user_linkman', title: '联 系 人', width: 75}
+                                ,{field: 'user_tel', title: '手机号码', width: 125}
+                                ,{field: 'salesman_id', title: '业务员', width: 70}
+                                ,{field: 'title', title: '管理',templet: '#barDemo', width: 120}
+                            ]]
+                        });
+                        table.on('tool(test)', function(obj){ //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+                            var data = obj.data; //获得当前行数据
+                            var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+                            var tr = obj.tr; //获得当前行 tr 的DOM对象
+                            console.log(data);
+                            if(layEvent === 'detail'){ //查看
+                                //do somehing
+                            } else if(layEvent === 'del'){ //删除
+                                layer.confirm('真的删除行么', function(index){
+
+                                    //向服务端发送删除指令
+                                    $.post('userDel',{'_token':'{{csrf_token()}}',id:data.id,type:1},function(msg){
+                                        if(msg==1){
+                                            layer.msg('删除成功', {
+                                                icon: 1,
+                                                time: 2000 //2秒关闭（如果不配置，默认是3秒）
+                                            }, function(){
+                                                obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+                                            });
+
+                                        }else{
+                                            window.location.href=history.go(0);
+                                        }
+                                    })
+                                });
+                            } else if(layEvent === 'edit'){ //编辑
+                                //do something
+
+                                //同步更新缓存对应的值
+                                obj.update({
+                                    username: '123'
+                                    ,title: 'xxx'
+                                });
+                            }
+                        });
+                    });
+
+                </script>
+
+            </table></div>
         <div class="layui-tab-item"><div class="layui-tab-item layui-show"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="table_1">
                     <tbody><tr>
                         <td class="td_l_r title">关键字</td>
@@ -729,6 +800,7 @@
                             user_province:area1,
                             user_address:area2,
                             user_addresss:address,
+                            user_tel:mobile,
                             user_rank:start,
                             user_origin:source,
                             user_firm_web:website,

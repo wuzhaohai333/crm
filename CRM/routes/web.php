@@ -61,3 +61,9 @@ Route::any('/with','OddController@oddList');
 Route::any('/userArea', 'UserController@userArea');
 /**客户添加*/
 Route::any('/userAdd', 'UserController@userAdd');
+/**客户列表*/
+Route::any('/userList', 'UserController@userList');
+
+
+/**客户列表删除*/
+Route::any('/userDel', 'UserController@userDel');

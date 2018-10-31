@@ -33,4 +33,31 @@ class UserController extends CommonController
         $res=DB::table('crm_user')->insert($arr);
         echo $res;
     }
+    //客户列表
+    public function userList(){
+        $data=DB::table('crm_user')->where(['user_status'=>1])->get();
+        $count=DB::table('crm_user')->where(['user_status'=>1])->count();
+        echo json_encode(["code"=>0,"msg"=>"","count"=>$count,'data'=>$data]);
+    }
+    //客户删除
+    public function userDel(){
+        $arr=Input::get();
+        if($arr['type']==1){
+            $update_arr=[
+                'user_status'=>2,
+                'user_ctime'=>time()
+            ];
+            $where=[
+                'user_status'=>1,
+                'id'=>$arr['id']
+            ];
+            $res=DB::table('crm_user')->where($where)->update($update_arr);
+            if($res){
+                echo 1;
+            }else{
+                echo 2;
+            }
+        }
+
+    }
 }
