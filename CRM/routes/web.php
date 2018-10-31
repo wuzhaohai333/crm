@@ -54,13 +54,16 @@ Route::any('/index', 'IndexController@index');
 
 
 /** 客户管理*/
-Route::any('/user', 'UserController@user');
-/** 跟单管理列表*/
-Route::any('/with','OddController@oddList');
+
+Route::any('/user', 'userController@user');
+/** 桌面首页*/
+Route::any('/index', 'IndexController@index');
+
 /** 根据地址pid查询所有地址*/
 Route::any('/userArea', 'UserController@userArea');
 /**客户添加*/
 Route::any('/userAdd', 'UserController@userAdd');
+
 /**客户列表*/
 Route::any('/userList', 'UserController@userList');
 
@@ -71,3 +74,12 @@ Route::any('/userDel', 'UserController@userDel');
 Route::any('/userUpdate{id}', 'UserController@userUpdate');
 /**客户修改执行*/
 Route::any('/userUpDo', 'UserController@userUpdateDo');
+
+
+/** 跟单管理列表*/
+Route::any('/with','OddController@oddList');
+/**跟单添加*/
+Route::any('/oddAdd','OddController@oddAdd');
+Route::any('/oddAdd_to',function(){
+    return view('odd.oddAdd_to');
+});

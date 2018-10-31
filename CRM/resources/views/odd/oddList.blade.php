@@ -324,6 +324,7 @@
                     <th>总欠款</th>
                     <th>售后次数</th>
                     <th>业务员</th>
+                    <th>新增</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -335,11 +336,18 @@
                     <td>{{$value['user_qq']}}</td>
                     <td>{{$value['user_linkman']}}</td>
                     <td>{{$value['user_qq']}}</td>
-                    <td>{{$value['user_utime']}}分钟前</td>
+                    @if($value['user_utime'] > 3600*24)
+                        <td>{{ceil($value['user_utime']/60)}}天前</td>
+                    @elseif($value['user_utime'] > 3600)
+                        <td>{{ceil($value['user_utime']/3600)}}小时前</td>
+                    @elseif($value['user_utime'] > 60)
+                        <td>{{ceil($value['user_utime']/60)}}分钟前</td>
+                    @endif
                     <td>元</td>
                     <td>元</td>
                     <td>1</td>
                     <td>小阳</td>
+                    <td><a href="oddAdd?user_id={{$value['user_id']}}&user_name={{$value['user_name']}}">添加</a></td>
                 </tr>
                 @endforeach
                 </tbody>
@@ -390,16 +398,6 @@
             });
 //                    return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
         });
-        $('.add').click(function () {
-            var user_id = $('.add').parent().attr('user_id');
-            alert(user_id);
-            layer.open({
-                type: 1,
-                area: ['800px', '460px'],
-                shadeClose: true, //点击遮罩关闭
-                content: '\<\div style="padding:20px;">\<\/div>'
-            });
-        })
 
     });
 </script>
