@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
 
 class OddController extends CommonController
 {
@@ -46,7 +47,7 @@ class OddController extends CommonController
                     $odd_data[$key]['odd_plan'] = '未支付';
                     break;
                 case 3;
-                    $odd_data[$key]['odd_plan'] = '根进中';
+                    $odd_data[$key]['odd_plan'] = '跟进中';
                     break;
                 default:
                     $odd_data[$key]['odd_plan'] = '有意向';
@@ -58,22 +59,30 @@ class OddController extends CommonController
             $odd_data[$key]['odd_ctime'] = date('Y-m-d',$val['odd_ctime']);
         }
         #获取客户列表的数据
-        $info = $this->clientList();
+        $where = ['user_status'=>1];
+        $info = $this->clientList($where);
         return view('odd.oddList',['odd_data'=>$odd_data,'info'=>$info]);
     }
     /**
      * 新增跟单
      */
     public function oddAdd(){
-
+        $user_info = [];
+        $user_data = Input::get();
+        $user_name = Input::get();
+        $user_info['user_id'] = $user_data;
+        return view('odd.oddAdd_to',['user_info'=>$user_info]);
     }
     /**
      * 客户列表
      */
-    public function clientList(){
-        $info = json_decode(DB::table('crm_user')->where(['user_status'=>1])->select('user_id','user_name','user_qq','user_linkman','user_utime')->get(),true);
+    public function clientList($where){
+        $info = json_decode(DB::table('crm_user')
+            ->where($where)
+            ->select('user_id','user_name','user_qq','user_linkman','user_utime')
+            ->get(),true);
         foreach($info as $k=>$v){
-            $info[$k]['user_utime'] = ceil((time()-$v['user_utime'])/60);
+            $info[$k]['user_utime'] = ceil((time()-$v['user_utime']));
         }
         return $info;
     }
