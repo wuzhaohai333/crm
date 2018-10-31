@@ -261,6 +261,9 @@
                                     type: 2,
                                     area: ['900px', '500px'],
                                     content: '/userUpdate'+data.id //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+                                    ,end:function(){
+                                        window.location.reload();
+                                    }
                                 });
                             }
                         });

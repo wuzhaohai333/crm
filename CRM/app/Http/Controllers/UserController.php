@@ -79,6 +79,7 @@ class UserController extends CommonController
         foreach( $arr as $k=>$v) {
             if($tmp == $k) unset($arr[$k]);
             if('s' == $k) unset($arr[$k]);
+            if('index' == $k) unset($arr[$k]);
         }
         $where=[
             'id'=>$arr['id'],
