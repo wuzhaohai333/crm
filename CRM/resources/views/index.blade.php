@@ -75,16 +75,25 @@
     <div class="desktop">
         <div id="win10-shortcuts" class="shortcuts-hidden">
             @foreach($data as $value)
-                <div class="shortcut" onclick="Win10.openUrl('/{{$value->power_url}}','<img class=\'icon\' src=\'/win10ui/img/icon/win10.png\'/>{{$value->power_name}}')">
-                    <img class="icon" src="{{$value->power_img}}"/>
-                    <div class="title">{{$value->power_name}}</div>
+                <div class="shortcut" onclick="Win10.openUrl('crm.cjlll.com{{$value['power_url']}}','<img class=\'icon\' src=\'/win10ui/img/icon/win10.png\'/>{{$value['power_name']}}')">
+                    <img class="icon" src="{{$value['power_img']}}"/>
+                    <div class="title">{{$value['power_name']}}</div>
                 </div>
             @endforeach
 
             <div class="shortcut" onclick='Win10.openUrl("/power")'>
                 <i class="fa fa-gears  icon purple"></i>
                 <div class="title">权限管理</div>
+            </div>
 
+            <div class="shortcut" onclick='Win10.openUrl("/role")'>
+                <i class="fa fa-gears  icon purple"></i>
+                <div class="title">角色管理</div>
+            </div>
+
+            <div class="shortcut" onclick='Win10.openUrl("/admin")'>
+                <i class="fa fa-gears  icon purple"></i>
+                <div class="title">管理员管理</div>
             </div>
         </div>
         <div id="win10-desktop-scene"></div>
