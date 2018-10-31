@@ -16,7 +16,7 @@ class OddController extends CommonController
         $odd_data = json_decode(DB::table('crm_odd')
             ->where(['odd_status'=>1])
             ->join('crm_user','crm_odd.user_id','=','crm_user.user_id')
-            ->select('crm_odd.*','user_name')
+            ->select('crm_odd.*','user_name','salesman_id')
             ->get(),true);
         #循环处理数据
         foreach($odd_data as $key=>$val){
@@ -64,14 +64,34 @@ class OddController extends CommonController
         return view('odd.oddList',['odd_data'=>$odd_data,'info'=>$info]);
     }
     /**
-     * 新增跟单
+     * 新增跟单第一步
+     */
+    public function oddAdd_to(){
+            $user_info = [];
+            $user_data = Input::get();
+            $user_info['user_id'] = $user_data;
+            return view('odd.oddAdd_to',['user_info'=>$user_info]);
+    }
+    /**
+     * 新增跟单第二步
      */
     public function oddAdd(){
-        $user_info = [];
-        $user_data = Input::get();
-        $user_name = Input::get();
-        $user_info['user_id'] = $user_data;
-        return view('odd.oddAdd_to',['user_info'=>$user_info]);
+        $arr = Input::post();
+        $data = $arr['data'];
+        #日期转换时间戳
+        $todaytime=strtotime($data['next_time']);
+        ##############验证客户端的数据
+        $insert = [];
+        $insert['user_id'] = $data['user_id'];
+        $insert['odd_type'] = $data['odd_type'];
+        $insert['odd_plan'] = $data['odd_plan'];
+        $insert['odd_object'] = $data['odd_object'];
+        $insert['next_time'] = $todaytime;
+        $insert['first'] = $data['first'];
+        $insert['details'] = $data['details'];
+        $insert['odd_ctime'] = time();
+        $insert['odd_status'] = 1;
+        $row = DB::table('crm_odd')->insertGetId($insert);
     }
     /**
      * 客户列表

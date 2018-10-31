@@ -78,8 +78,7 @@ Route::any('/userUpDo', 'UserController@userUpdateDo');
 
 /** 跟单管理列表*/
 Route::any('/with','OddController@oddList');
+/**跟单添加前*/
+Route::any('/oddAdd_to','OddController@oddAdd_to');
 /**跟单添加*/
 Route::any('/oddAdd','OddController@oddAdd');
-Route::any('/oddAdd_to',function(){
-    return view('odd.oddAdd_to');
-});

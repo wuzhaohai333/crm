@@ -14,6 +14,18 @@
             color: red;
             border: 1px;
         }
+        .save{
+            width: 50px;
+            height:25px;
+            background: #009688;
+            border: 0;
+        }
+        .dele{
+            width: 50px;
+            height:25px;
+            background: #FF5722;
+            border: 0;
+        }
     </style>
 </head>
 <body>
@@ -101,11 +113,11 @@
                         <td>{{$value['odd_object']}}</td>
                         <td>{{$value['next_time']}}</td>
                         <td>{{$value['details']}}</td>
-                        <td>小阳</td>
+                        <td>{{$value['salesman_id']}}</td>
                         <td>{{$value['odd_ctime']}}</td>
                         <td>
-                            <button>修改</button>
-                            <button>删除</button>
+                            <button class="save">修改</button>
+                            <button class="dele">删除</button>
                         </td>
                     </tr>
                 @endforeach
@@ -309,11 +321,10 @@
             本月跟单记录
         </div>
         <div class="layui-tab-item">
-            <div class="Findtip">①单击选中客户 &gt;&gt; ②录入信息</div>
+            <div class="Findtip">①单击添加选中客户 &gt;&gt; ②录入信息</div>
             <table class="layui-table">
                 <thead>
                 <tr>
-                    <th><input type="checkbox"></th>
                     <th>编号</th>
                     <th>客户名称</th>
                     <th>联系QQ</th>
@@ -330,7 +341,6 @@
                 <tbody>
                 @foreach($info as $value)
                 <tr class="add" user_id="{{$value['user_id']}}">
-                    <td><input type="checkbox"></td>
                     <td>{{$value['user_id']}}</td>
                     <td>{{$value['user_name']}}</td>
                     <td>{{$value['user_qq']}}</td>
@@ -346,8 +356,8 @@
                     <td>元</td>
                     <td>元</td>
                     <td>1</td>
-                    <td>小阳</td>
-                    <td><a href="oddAdd?user_id={{$value['user_id']}}&user_name={{$value['user_name']}}">添加</a></td>
+                    <td></td>
+                    <td style="background: green"><a href="oddAdd_to?user_id={{$value['user_id']}}&user_name={{$value['user_name']}}"><font color="#fff">添加</font></a></td>
                 </tr>
                 @endforeach
                 </tbody>

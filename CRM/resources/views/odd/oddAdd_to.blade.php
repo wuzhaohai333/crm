@@ -14,8 +14,8 @@
         <label class="layui-form-label">客户名称</label>
         <div class="layui-input-block">
             @foreach($user_info as $value)
-                <input type="hidden" value="{{$value['user_id']}}">
-                <input type="text" name="title" value="{{$value['user_name']}}" lay-verify="title"  class="layui-input">
+                <input type="hidden" name="user_id" value="{{$value['user_id']}}">
+                <input type="text" name="user_name" disabled value="{{$value['user_name']}}" lay-verify="title"  class="layui-input">
             @endforeach
         </div>
     </div>
@@ -50,7 +50,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">跟单对象</label>
         <div class="layui-input-block" style="width: 200px">
-            <select name="odd_plan" lay-filter="aihao">
+            <select name="odd_object" lay-filter="aihao">
                 <option value=""></option>
                 <option value="1">小阳</option>
                 <option value="2">小李</option>
@@ -59,16 +59,28 @@
         </div>
     </div>
 
-        <div class="layui-inline">
-            <label class="layui-form-label">中文版</label>
-            <div class="layui-input-inline">
-                <input type="text" class="layui-input" id="test1" placeholder="">
-            </div>
+    <div class="layui-inline layui-form-item layui-form-text">
+        <label class="layui-form-label">下次联系</label>
+        <div class="layui-input-inline">
+            <input type="text" name="next_time" class="layui-input" id="test1" placeholder="联系时间">
         </div>
+        <label class="layui-form-label">提前</label>
+        <div class="layui-input-inline">
+            <select name="first" lay-filter="aihao">
+                <option value="1">1小时</option>
+                <option value="2">2小时</option>
+                <option value="3">3小时</option>
+                <option value="4">1&nbsp;&nbsp;&nbsp;天</option>
+                <option value="5">2&nbsp;&nbsp;&nbsp;天</option>
+            </select>
+        </div>
+        <label class="layui-form-label">提醒</label>
+    </div>
+
     <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">普通文本域</label>
         <div class="layui-input-block">
-            <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
+            <textarea placeholder="请输入内容" name="details" class="layui-textarea"></textarea>
         </div>
     </div>
 
@@ -76,11 +88,13 @@
         <div class="layui-input-block">
             <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            &nbsp;&nbsp;&nbsp;<a href="with">返回上页</a>
         </div>
     </div>
 </form>
 </body>
 </html>
+
 <script>
     layui.use(['form', 'layedit', 'laydate'], function() {
         var form = layui.form
@@ -90,12 +104,19 @@
         //常规用法
         laydate.render({
             elem: '#test1'
+            ,format: 'yyyy-MM-dd HH:mm:ss' //可任意组合
         });
 
         //监听提交
         form.on('submit(demo1)', function (data) {
-            layer.alert(JSON.stringify(data.field), {
-                title: '最终的提交信息'
+            $.ajax({
+                url:'oddAdd',
+                data:{'_token':'{{csrf_token()}}',data:data.field},
+                type:'post',
+                dataType:'json',
+                success:function(json){
+                    alert(json);
+                }
             })
             return false;
         });
