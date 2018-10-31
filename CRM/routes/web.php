@@ -14,6 +14,10 @@
 Route::any('/', function () {
     return view('login');
 });
+/** 注意事项*/
+Route::any('/waring', function () {
+    return view('waring');
+});
 /** 执行登录*/
 Route::any('/login', 'LoginController@login');
 /** 退出登录*/
