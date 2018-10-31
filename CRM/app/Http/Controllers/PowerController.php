@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 class PowerController extends CommonController
 {
     /** 权限管理*/
-    public function power(){
+    public function power(Request $request){
         #只查最顶级权限(添加时下拉框使用)
         $power_top = json_decode(json_encode(DB::table('crm_power') -> where(['power_level' => 1,'power_status' => 1]) -> get()),true);
         return view('power',['power'=> $power_top]);

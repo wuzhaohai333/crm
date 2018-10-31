@@ -42,17 +42,15 @@ Route::any('/adminAdd', 'AdminController@adminAdd');
 Route::any('/adminData', 'AdminController@adminData');
 /** 管理员修改（即点即改）*/
 Route::any('/adminUpdate', 'AdminController@adminUpdate');
-
-
-
-/** 客户管理*/
-Route::any('/user', 'userController@user');
-
-
-/** 客户管理*/
-Route::any('/user', 'userController@user');
 /** 桌面首页*/
 Route::any('/index', 'IndexController@index');
+
+
+
+
+
+/** 客户管理*/
+Route::any('/user', 'UserController@user');
 /** 跟单管理列表*/
 Route::any('/with','OddController@oddList');
 /** 根据地址pid查询所有地址*/
