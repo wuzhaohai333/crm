@@ -132,15 +132,12 @@
                                 msg.font,//提示的文字
                                 {
                                     //两个按钮
-                                    btn:['继续添加','查看权限列表'],
+                                    btn:['继续添加'],
                                     //按钮一的回调（点击按钮一执行的东西）
                                     yes:function (index){
                                         window.history.go(0);
                                     },
                                     //按钮二的回调（点击按钮二执行的东西）
-                                    btn2: function(){
-                                        window.location.href=("/powerList");
-                                    }
                                 }
                         );
                     }

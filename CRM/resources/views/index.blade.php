@@ -42,7 +42,7 @@
             }, 2500);
 
             setTimeout(function () {
-                Win10.openUrl('//win10ui.yuri2.cn/src/broadcast.html','<i class="fa fa-newspaper-o icon red"></i>最新资讯',[['300px', '380px'],'rt'])
+                Win10.openUrl('/waring','<i class="fa fa-newspaper-o icon red"></i>最新资讯',[['300px', '380px'],'rt'])
             },2000);
 
 
@@ -74,22 +74,12 @@
 <div id="win10">
     <div class="desktop">
         <div id="win10-shortcuts" class="shortcuts-hidden">
-
-
-            <div class="shortcut" onclick='Win10.openUrl("/power")'>
-                <i class="fa fa-gears  icon purple"></i>
-                <div class="title">权限管理</div>
-            </div>
-
-            <div class="shortcut" onclick='Win10.openUrl("/role")'>
-                <i class="fa fa-gears  icon purple"></i>
-                <div class="title">角色管理</div>
-            </div>
-
-            <div class="shortcut" onclick='Win10.openUrl("/admin")'>
-                <i class="fa fa-gears  icon purple"></i>
-                <div class="title">管理员管理</div>
-            </div>
+            @foreach($data as $value)
+                <div class="shortcut" onclick="Win10.openUrl('/{{$value['power_url']}}','<img class=\'icon\' src=\'/win10ui/img/icon/win10.png\'/>{{$value['power_name']}}')">
+                    <img class="icon" src="{{$value['power_img']}}"/>
+                    <div class="title">{{$value['power_name']}}</div>
+                </div>
+            @endforeach
         </div>
         <div id="win10-desktop-scene"></div>
     </div>

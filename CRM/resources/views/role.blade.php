@@ -40,7 +40,7 @@
                         @foreach($nodeAll as $v)
                             <fieldset class="layui-elem-field">
                                 <legend>
-                                    <input type="checkbox" class="parent" lay-filter="q" lay-skin="primary" title="{{$v['power_name']}}">
+                                    <input type="checkbox" class="parent" name="power[]" value="{{$v['id']}}" lay-filter="q" lay-skin="primary" title="{{$v['power_name']}}">
                                 </legend>
                                 <div class="layui-field-box">
                                     @foreach($v['son'] as $vv)
