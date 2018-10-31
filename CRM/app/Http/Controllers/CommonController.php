@@ -42,10 +42,10 @@ class CommonController extends Controller
                 foreach($powerAll as $k => $v){
                     $index[] = strtolower($v['power_url']);
                 }
-                #特殊权限
-                $index[] = '/index';
                 #如果权限不够阻止访问
                 $route = strtolower('/'.$request -> path());#路由
+                #特殊权限
+                $index[] = '/index';
                 #超级管理员不受权限控制
                 if($admin_id != 1){
                     if(!in_array($route,$index)){
@@ -53,7 +53,7 @@ class CommonController extends Controller
                     }
                 }
             }
-//            $request->merge(['index' => $index]); //合并参数 在控制器中可以使用 request()->get('userinfo') 获取
+            $request->merge(['index' => $index]); //合并参数 在控制器中可以使用 request()->get('userinfo') 获取
 //            $request->attributes->add(['userinfo' => $arr]);//添加参数  在控制器中可以使用request()->get('userinfo') 获取
             return $next($request);
         });
