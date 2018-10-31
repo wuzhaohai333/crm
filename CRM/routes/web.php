@@ -63,3 +63,7 @@ Route::any('/userList', 'UserController@userList');
 
 /**客户列表删除*/
 Route::any('/userDel', 'UserController@userDel');
+/**客户修改视图*/
+Route::any('/userUpdate{id}', 'UserController@userUpdate');
+/**客户修改执行*/
+Route::any('/userUpDo', 'UserController@userUpdateDo');

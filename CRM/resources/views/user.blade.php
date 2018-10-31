@@ -200,7 +200,7 @@
                     </td>
                 </tr>
                 </tbody>
-                <table id="demo" lay-filter="test"></table>
+                <table id="demo" lay-filter="test"  lay-data="{id: 'idTest'}"></table>
                 <script type="text/html" id="barDemo">
                     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
                     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
@@ -216,6 +216,7 @@
                             ,height: 312
                             ,url: 'userList' //数据接口
                             ,page: true //开启分页
+                            ,limit:5
                             ,cols: [[ //表头
                                 {field: 'id', title: '编号', width:80, fixed: 'left'}
                                 ,{field: 'user_name', title: '客户名称', width:80}
@@ -235,11 +236,10 @@
                             var data = obj.data; //获得当前行数据
                             var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
                             var tr = obj.tr; //获得当前行 tr 的DOM对象
-                            console.log(data);
                             if(layEvent === 'detail'){ //查看
                                 //do somehing
                             } else if(layEvent === 'del'){ //删除
-                                layer.confirm('真的删除行么', function(index){
+                                layer.confirm('确定删除吗', function(index){
 
                                     //向服务端发送删除指令
                                     $.post('userDel',{'_token':'{{csrf_token()}}',id:data.id,type:1},function(msg){
@@ -257,12 +257,10 @@
                                     })
                                 });
                             } else if(layEvent === 'edit'){ //编辑
-                                //do something
-
-                                //同步更新缓存对应的值
-                                obj.update({
-                                    username: '123'
-                                    ,title: 'xxx'
+                                layer.open({
+                                    type: 2,
+                                    area: ['900px', '500px'],
+                                    content: '/userUpdate'+data.id //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
                                 });
                             }
                         });
@@ -360,7 +358,6 @@
                                 @endforeach
                             </select>省
                             <select name="adduser" class="int Select_Type"><option value="">请选择</option>
-                                <option value="1">邯郸</option>
                             </select>市
                             <input type="submit" name="Submit" id="ss_button" class="btn1 btnxiug layui-btn layui-btn-sm" value="搜索">
                             <input type="button" class="btn1 btnxiug layui-btn layui-btn-sm" value="清空条件" onclick="window.location.href=&quot;?&quot;">
@@ -400,7 +397,7 @@
                                 <option value="2">刘总监</option>
                                 <option value="3">测试111</option>
                                 <option value="4">ceshi2</option>
-                                <option value="4">显示</option>
+                                <option value="5">显示</option>
                             </select>
                             所在地区
                             <select name="adduser" class="int Select_Type linkage"><option value="">请选择</option>
@@ -583,7 +580,7 @@
                                             <option value="1">电话营销</option>
                                             <option value="2">搜索引擎</option>
                                             <option value="3">朋友介绍</option>
-                                            <option value="3">其它来源</option>
+                                            <option value="4">其它来源</option>
                                         </select>
                                         &nbsp;
                                     </td>
