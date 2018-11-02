@@ -14,7 +14,7 @@
         <label class="layui-form-label">客户名称</label>
         <div class="layui-input-block">
             @foreach($user_info as $value)
-                <input type="hidden" name="user_id" value="{{$value['user_id']}}">
+                <input type="hidden" name="id" value="{{$value['id']}}">
                 <input type="text" name="user_name" disabled value="{{$value['user_name']}}" lay-verify="title"  class="layui-input">
             @endforeach
         </div>
@@ -96,7 +96,7 @@
 </html>
 
 <script>
-    layui.use(['form', 'layedit', 'laydate'], function() {
+    layui.use(['form', 'layedit', 'laydate','layer'], function() {
         var form = layui.form
                 , layer = layui.layer
                 , layedit = layui.layedit
@@ -115,7 +115,16 @@
                 type:'post',
                 dataType:'json',
                 success:function(json){
-                    alert(json);
+                    if(json == 1){
+                        layer.msg('添加成功',{icon:1,time:2000},function(){
+                            window.location.href='with';
+                        })
+                    }else {
+                        lauer.msg('添加失败',{icon:2}, function () {
+                            window.location.href=history.go(0);
+                        })
+                    }
+
                 }
             })
             return false;

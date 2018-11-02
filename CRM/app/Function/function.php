@@ -12,3 +12,8 @@ function getTree($data , $pid = 0){
     }
     return $info;
 }
+//stdclass object格式 转数组
+function object2array(&$object) {
+    $object =  json_decode( json_encode( $object),true);
+    return  $object;
+}

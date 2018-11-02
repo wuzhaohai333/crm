@@ -82,3 +82,7 @@ Route::any('/with','OddController@oddList');
 Route::any('/oddAdd_to','OddController@oddAdd_to');
 /**跟单添加*/
 Route::any('/oddAdd','OddController@oddAdd');
+/**删除跟单*/
+Route::any('/oddDel','OddController@oddDel');
+/**跟单列表修改*/
+Route::any('/oddUpdate{odd_id}','OddController@oddUpdate');
