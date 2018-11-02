@@ -86,3 +86,13 @@ Route::any('/oddAdd','OddController@oddAdd');
 Route::any('/oddDel','OddController@oddDel');
 /**跟单列表修改*/
 Route::any('/oddUpdate{odd_id}','OddController@oddUpdate');
+/**执行修改*/
+Route::any('oddUpdate_to','OddController@oddUpdate_to');
+
+
+
+
+/**合同管理列表*/
+Route::any('/bargain','PactcateController@pactList');
+/**签订的合同页*/
+Route::any('/pactlist_client','PactcateController@pactlist_client');

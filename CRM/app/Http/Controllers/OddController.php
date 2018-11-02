@@ -187,10 +187,16 @@ class OddController extends CommonController
                     break;
             }
             #下次联系
-            $odd_data['next_time'] = date('Y-m-d H:s:i',$odd_data['next_time']);
+            //$odd_data['next_time'] = date('Y-m-d H:i:s',$odd_data['next_time']);
             #添加时间
-            $odd_data['odd_ctime'] = date('Y-m-d',$odd_data['odd_ctime']);
-        return view('odd.oddUpdate');
-
+            // $odd_data['odd_ctime'] = date('Y-m-d',$odd_data['odd_ctime']);
+        return view('odd.oddUpdate',['odd_data'=>$odd_data]);
+    }
+    /**
+     * 执行修改
+     */
+    public function oddUpdate_to(){
+        $arr = Input::post();
+        print_r($arr);
     }
 }

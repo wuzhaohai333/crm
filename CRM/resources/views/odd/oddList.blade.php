@@ -347,7 +347,7 @@
                     <td>{{$value['user_linkman']}}</td>
                     <td>{{$value['user_qq']}}</td>
                     @if($value['user_utime'] > 3600*24)
-                        <td>{{ceil($value['user_utime']/60)}}天前</td>
+                        <td>{{ceil($value['user_ctime']/3600/24)}}天前</td>
                     @elseif($value['user_utime'] > 3600)
                         <td>{{ceil($value['user_utime']/3600)}}小时前</td>
                     @elseif($value['user_utime'] > 60)
