@@ -82,6 +82,7 @@ Route::any('/with','OddController@oddList');
 Route::any('/oddAdd_to','OddController@oddAdd_to');
 /**跟单添加*/
 Route::any('/oddAdd','OddController@oddAdd');
+<<<<<<< HEAD
 
 
 
@@ -116,3 +117,9 @@ Route::any('/upType','OrderController@upType');
 Route::any('/product{id}','OrderController@product');
 /** 产品添加*/
 Route::any('/testa','OrderController@productAdd');
+=======
+/**删除跟单*/
+Route::any('/oddDel','OddController@oddDel');
+/**跟单列表修改*/
+Route::any('/oddUpdate{odd_id}','OddController@oddUpdate');
+>>>>>>> decb7bfd0030a879c7de5dcce4b0ad290653775a

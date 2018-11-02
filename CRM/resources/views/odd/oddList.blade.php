@@ -116,8 +116,8 @@
                         <td>{{$value['salesman_id']}}</td>
                         <td>{{$value['odd_ctime']}}</td>
                         <td>
-                            <button class="save">修改</button>
-                            <button class="dele">删除</button>
+                            <button class="save" odd_id="{{$value['odd_id']}}">修改</button>
+                            <button class="dele" odd_id="{{$value['odd_id']}}">删除</button>
                         </td>
                     </tr>
                 @endforeach
@@ -340,8 +340,8 @@
                 </thead>
                 <tbody>
                 @foreach($info as $value)
-                <tr class="add" user_id="{{$value['user_id']}}">
-                    <td>{{$value['user_id']}}</td>
+                <tr class="add" user_id="{{$value['id']}}">
+                    <td>{{$value['id']}}</td>
                     <td>{{$value['user_name']}}</td>
                     <td>{{$value['user_qq']}}</td>
                     <td>{{$value['user_linkman']}}</td>
@@ -357,7 +357,7 @@
                     <td>元</td>
                     <td>1</td>
                     <td></td>
-                    <td style="background: green"><a href="oddAdd_to?user_id={{$value['user_id']}}&user_name={{$value['user_name']}}"><font color="#fff">添加</font></a></td>
+                    <td style="background: green"><a href="oddAdd_to?id={{$value['id']}}&user_name={{$value['user_name']}}"><font color="#fff">添加</font></a></td>
                 </tr>
                 @endforeach
                 </tbody>
@@ -368,7 +368,7 @@
 
 
 <script src="/layui/layui.js" charset="utf-8"></script>
-<script src="/win10ui\js\jquery-2.2.4.min.js"></script>
+<script src="/win10ui/js/jquery-2.2.4.min.js"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
     layui.use(['element','form'], function(){
@@ -376,40 +376,37 @@
         var form = layui.form;//表单
         var table = layui.table;//数据表格
         form.on('submit(*)',function(data){
-//                    console.log(data.field);  //表单所有值
-            $.ajax({
-                type:'post',
-                url:"/oddAdd",
-                data:data.field,
-                async:false,//异步
-                success:function(msg){
-                    if(msg.status == 0){
-                        layer.msg(msg.msg,{icon:5});
-                        return false;
-                    }else if(msg.status == 1000){
-                        layer.confirm(
-                                msg.msg,//提示的文字
-                                {
-                                    //两个按钮
-                                    btn:['继续添加','查看权限列表'],
-                                    //按钮一的回调（点击按钮一执行的东西）
-                                    yes:function (index){
-                                        window.history.go(0);
-                                    },
-                                    //按钮二的回调（点击按钮二执行的东西）
-                                    btn2: function(){
-                                        window.location.href=("/oddAdd");
-                                    }
-                                }
-                        );
-                    }
-                },
-                dataType:'json',
-            });
-//                    return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
         });
 
     });
+    //修改
+    $('.save').click(function () {
+        var odd_id = $(this).attr('odd_id');
+        layer.open({
+            type: 2,
+            area: ['900px', '500px'],
+            content: '/oddUpdate'+odd_id //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+            ,end:function(){
+                window.location.reload();
+            }
+        });
+    })
+    //删除
+    $('.dele').click(function () {
+        var odd_id = $(this).attr('odd_id');
+        layer.confirm('确定删除吗', function (index) {
+            $.post('oddDel',{'_token':'{{csrf_token()}}',odd_id:odd_id,type:1},function(msg){
+                if(msg==1){
+                    layer.msg('删除成功', {
+                        icon: 1,
+                        time: 2000 //2秒关闭（如果不配置，默认是3秒）
+                    }, function(){
+                        window.location.href=history.go(0);
+                    });
+                }
+            })
+        })
+    })
 </script>
 
 </body>
