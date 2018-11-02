@@ -55,7 +55,7 @@ Route::any('/index', 'IndexController@index');
 
 /** 客户管理*/
 
-Route::any('/user', 'userController@user');
+Route::any('/user', 'UserController@user');
 /** 桌面首页*/
 Route::any('/index', 'IndexController@index');
 
