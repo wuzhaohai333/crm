@@ -55,7 +55,7 @@ Route::any('/index', 'IndexController@index');
 
 /** 客户管理*/
 
-Route::any('/user', 'userController@user');
+Route::any('/user', 'UserController@user');
 /** 桌面首页*/
 Route::any('/index', 'IndexController@index');
 
@@ -89,6 +89,23 @@ Route::any('/oddUpdate{odd_id}','OddController@oddUpdate');
 /**执行修改*/
 Route::any('oddUpdate_to','OddController@oddUpdate_to');
 
+
+/**订单展示*/
+Route::any('/order','OrderController@order');
+/**获取订单号*/
+Route::any('/order_mark','OrderController@orderMark');
+/**添加订单*/
+Route::any('/orderAdd','OrderController@orderAdd');
+/**订单列表*/
+Route::any('/orderList','OrderController@orderList');
+/**订单状态修改*/
+Route::any('/orderType{id}','OrderController@orderType');
+/**修改订单状态*/
+Route::any('/upType','OrderController@upType');
+/** 产品添加视图*/
+Route::any('/product{id}','OrderController@product');
+/** 产品添加*/
+Route::any('/testa','OrderController@productAdd');
 
 
 

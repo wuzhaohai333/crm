@@ -340,7 +340,7 @@
                 </thead>
                 <tbody>
                 @foreach($info as $value)
-                <tr class="add" user_id="{{$value['id']}}">
+                <tr class="add">
                     <td>{{$value['id']}}</td>
                     <td>{{$value['user_name']}}</td>
                     <td>{{$value['user_qq']}}</td>

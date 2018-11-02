@@ -18,6 +18,7 @@ class OddController extends CommonController
             ->join('crm_user','crm_odd.id','=','crm_user.id')
             ->select('crm_odd.*','user_name','salesman_id')
             ->get(),true);
+
         #循环处理数据
         foreach($odd_data as $key=>$val){
             #跟单类型
