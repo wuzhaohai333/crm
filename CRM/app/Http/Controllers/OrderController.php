@@ -19,9 +19,9 @@ class OrderController extends Controller
     public function orderList(){
         $arr=Input::get();
         $limit=($arr['page']-1)*$arr['limit'];
-        $data=DB::table('crm_order')
-            ->join('crm_user','crm_order.user_id','=','crm_user.id')
-            ->offset($limit)->limit($arr['limit'])->where(['user_status'=>1])->get()->toArray();
+        $data=DB::table('crm_user')
+            ->join('crm_order','crm_order.user_id','=','crm_user.id')
+            ->offset($limit)->limit($arr['limit'])->where(['user_status'=>1])->where('order_type','<','4')->get()->toArray();
         $count=DB::table('crm_order')->join('crm_user','crm_order.user_id','=','crm_user.id')->count();
         foreach($data as $k=>$v){
             $arr=DB::table('crm_linkman')->where(['link_id'=>$v->linkman])->first();
@@ -112,5 +112,39 @@ class OrderController extends Controller
         ];
         $res=DB::table('crm_product')->insert($newArr);
         if($res){echo 1;}else{echo 2;}
+    }
+    /**订单删除*/
+    public function orderDel(){
+        $id=Input::get('id');
+        $update_arr=[
+            'order_type'=>4,
+            'order_utime'=>time()
+        ];
+        $where=[
+            'id'=>$id
+        ];
+        $res=DB::table('crm_order')->where($where)->update($update_arr);
+        if($res){
+            echo 1;
+        }else{
+            echo 2;
+        }
+    }
+    /**订单修改视图*/
+    public function orderUpdate($id){
+        $arr=DB::table('crm_user')
+            ->join('crm_order','crm_order.user_id','=','crm_user.id')
+            ->where(['user_status'=>1,'crm_order.id'=>$id])
+            ->where('order_type','<','4')->first();
+        $link=DB::table('crm_linkman')->get()->toArray();
+        $user=DB::table('crm_user')->where(['user_status'=>1])->get()->toArray();
+        $arr->order_ctime=date('Y-m-d',$arr->order_ctime);
+        $arr->order_btime=date('Y-m-d',$arr->order_btime);
+        return view('orderUpdate',['link'=>$link,'user'=>$user,'arr'=>$arr]);
+    }
+    /**订单修改*/
+    public function orderUpdateDo(){
+        $arr=Input::get();
+        dump($arr);
     }
 }
