@@ -6,11 +6,10 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <title>客户列表</title>
 
-    <script type="text/javascript" src="/win10/js/jquery-2.2.4.min.js"></script>
-    <link href="/win10/component/layer-v3.0.3/layer/css/layui.css" rel="stylesheet">
+    <script type="text/javascript" src="/win10ui/js/jquery-2.2.4.min.js"></script>
     <link rel="stylesheet" href="/layui/css/layui.css"  media="all">
-    <script type="text/javascript" src="/win10/component/layer-v3.0.3/layer/layer.js"></script>
-    <script src="/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/win10ui/component/layer-v3.0.3/layer/layer.js"></script>
+    <script type="text/javascript" src="/layui/layui.js"></script>
 </head>
 <body>
 

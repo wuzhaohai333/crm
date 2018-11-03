@@ -5,11 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <title>新增客户</title>
-    <script type="text/javascript" src="/win10/js/jquery-2.2.4.min.js"></script>
-    <link href="/win10/component/layer-v3.0.3/Layui/css/layui.css" rel="stylesheet">
-    <script type="text/javascript" src="/win10/js/win10.child.js"></script>
+    <script type="text/javascript" src="/win10ui/js/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="/layui/css/layui.css"  media="all">
+    <script type="text/javascript" src="/win10ui/js/win10.child.js"></script>
     <script type="text/javascript" src="/layui/layui.js"></script>
-    <script type="text/javascript" src="/win10/component/layer-v3.0.3/Layui/layui.js"></script>
+    {{--<script type="text/javascript" src="/win10ui/component/layer-v3.0.3/Layui/layui.js"></script>--}}
 </head>
 <body>
 <form class="layui-form layui-form-pane" action="" style="margin-top: 20px;margin-left: 20px;">
@@ -18,7 +18,7 @@
         <label class="layui-form-label">客户名称</label>
 
         <div class="layui-input-block">
-            <input type="text" name="name" lay-verify="required" value="{{$client->client_name}}" placeholder="请输入"
+            <input type="text" name="name" lay-verify="required" value="{{$user_info->user_name}}" placeholder="请输入"
                    autocomplete="off"
                    class="layui-input">
         </div>
@@ -28,7 +28,7 @@
         <label class="layui-form-label">合同编号</label>
 
         <div class="layui-input-block">
-            <input type="text" name="h_code" value="{{$pact_code}}" lay-verify="required" placeholder="请输入"
+            <input type="text" name="contract_mark" value="{{$pact_code}}" lay-verify="required" placeholder="请输入"
                    autocomplete="off"
                    class="layui-input">
         </div>
@@ -38,17 +38,16 @@
         <label class="layui-form-label">合同分类</label>
 
         <div class="layui-input-inline">
-            <select name="cls">
-                @foreach( $category as $v)
-                    <option value="{{$v->category_id}}">{{$v->category_name}}</option>
-                @endforeach
+            <select name="contract_type">
+                <option value="">请选择</option>
+                <option value="1">租赁</option>
+                <option value="2">工程</option>
+                <option value="3">技术</option>
+                <option value="4">委托</option>
+                <option value="5">服务</option>
             </select>
         </div>
-        <div class="layui-input-inline">
-            <button class="layui-btn layui-btn-primary layui-btn-sm"
-                    style="background:#5CAD69 ;color: #ffffff;margin-top:5px;">新增
-            </button>
-        </div>
+
 
     </div>
 
@@ -56,21 +55,20 @@
         <label class="layui-form-label">订单编号</label>
 
         <div class="layui-input-inline">
-            <input type="text" name="order" value="" lay-verify="required" placeholder="请输入" autocomplete="off"
+            <input type="text" name="order_mark" value="" lay-verify="required" placeholder="请输入" autocomplete="off"
                    class="layui-input">
         </div>
 
 
     </div>
-
     <div class="layui-form-item">
 
-        <label class="layui-form-label">合同结束时间</label>
+        <label class="layui-form-label">开始时间</label>
 
         <div class="layui-inline">
 
             <div class="layui-input-inline">
-                <input type="text" name="endtime" class="layui-input" id="test1" placeholder="请输入">
+                <input type="text" name="begin_time" class="layui-input" id="test1" placeholder="请输入">
             </div>
         </div>
 
@@ -78,20 +76,24 @@
 
     <div class="layui-form-item">
 
+        <label class="layui-form-label">结束时间</label>
 
         <div class="layui-inline">
-            <label class="layui-form-label" >已收款</label>
 
             <div class="layui-input-inline">
-                <input type="text" name="money" class="layui-input" placeholder="请输入">
+                <input type="text" name="over_time" class="layui-input" id="test1" placeholder="请输入">
             </div>
         </div>
+
+    </div>
+
+    <div class="layui-form-item">
 
         <div class="layui-inline">
             <label class="layui-form-label" >总金额</label>
 
             <div class="layui-input-inline">
-                <input type="text" name="total_money" class="layui-input" placeholder="请输入">
+                <input type="text" name="money" class="layui-input" placeholder="请输入">
             </div>
         </div>
 
@@ -114,7 +116,14 @@
         </div>
 
     </div>
-    <input type="hidden" name="client_id" value="{{$client->client_id}}">
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">合同详情</label>
+        <div class="layui-input-block">
+            <textarea placeholder="请输入内容" name="contract_details" class="layui-textarea"></textarea>
+        </div>
+    </div>
+
+    <input type="hidden" name="id" value="{{$user_info->id}}">
 
 
 
@@ -145,7 +154,7 @@
         form.on('submit(*)', function (data) {
 
             $.ajax({
-                url: 'pactcate_add_db',
+                url: 'pactcate_add_to',
                 data: {
                     '_token': '{{csrf_token()}}',
                     arr:data.field
@@ -154,6 +163,8 @@
                 type: 'post',
                 async: false,
                 success: function (json_msg) {
+                    alert(json_msg);
+                    return false;
                     if (json_msg.code == '1000') {
                         layui.layer.msg(json_msg.font, {icon: 6});
 
@@ -164,43 +175,6 @@
             });
             return false;
         });
-
-        //选择省的内容改变事件
-        form.on('select(test)', function (data) {
-//            console.log(data.elem); //得到select原始DOM对象
-//            console.log(data.value); //得到被选中的值
-//            console.log(data.othis); //得到美化后的DOM对象
-
-            var region_id = data.value;
-            var _tr = '<option value="">请选择市</option>';
-            $.ajax({
-                url: 'get_region',
-                data: {
-                    '_token': '{{csrf_token()}}',
-                    'region_id': region_id
-                },
-                dataType: 'json',
-                type: 'post',
-                async: false,
-                success: function (json_msg) {
-                    for (v in json_msg.region) {
-
-                        _tr += '<option value="' + json_msg.region[v]['region_id'] + '">'
-                                + json_msg.region[v]['region_name']
-                                + '</option>';
-                    }
-
-
-                }
-
-            });
-            //赋值
-            $('#ciy').append(_tr);
-            form.render('select');
-
-
-        });
-
 
     });
 

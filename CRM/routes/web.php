@@ -113,3 +113,8 @@ Route::any('/testa','OrderController@productAdd');
 Route::any('/bargain','PactcateController@pactList');
 /**签订的合同页*/
 Route::any('/pactlist_client','PactcateController@pactlist_client');
+/**新增合同*/
+Route::any('/pactcate_add','PactcateController@pactcate_add');
+/**执行添加*/
+Route::any('/pactcate_add_to','PactcateController@pactcate_add_to');
+;

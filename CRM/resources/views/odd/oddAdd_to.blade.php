@@ -78,7 +78,7 @@
     </div>
 
     <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">普通文本域</label>
+        <label class="layui-form-label">跟单详情</label>
         <div class="layui-input-block">
             <textarea placeholder="请输入内容" name="details" class="layui-textarea"></textarea>
         </div>
