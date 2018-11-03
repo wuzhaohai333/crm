@@ -586,8 +586,6 @@
         });
     });
     $('#submit').click(function(){
-
-        $(this).attr('disabled',true);
         var id=$("#id").val();//用户id
         var name=$("#name").val();//用户名称
         var type=$("#type").val();//用户类型
