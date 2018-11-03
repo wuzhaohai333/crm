@@ -13,10 +13,8 @@
     <div class="layui-form-item">
         <label class="layui-form-label">客户名称</label>
         <div class="layui-input-block">
-            @foreach($user_info as $value)
-                <input type="hidden" name="id" value="{{$value['id']}}">
-                <input type="text" name="user_name" disabled value="{{$value['user_name']}}" lay-verify="title"  class="layui-input">
-            @endforeach
+                <input type="hidden" name="id" value="{{$odd_data['id']}}">
+                <input type="text" name="user_name" disabled value="{{$odd_data['user_name']}}" lay-verify="title"  class="layui-input">
         </div>
     </div>
 
@@ -24,7 +22,7 @@
         <label class="layui-form-label">跟单类型</label>
         <div class="layui-input-block" style="width: 200px">
             <select name="odd_type" lay-filter="aihao">
-                <option value=""></option>
+                <option value="{{$odd_data['odd_type']}}" selected>{{$odd_data['odd_type']}}</option>
                 <option value="1">电话跟进</option>
                 <option value="2">上门拜访</option>
                 <option value="3">QQ交谈</option>
@@ -38,7 +36,7 @@
             <label class="layui-form-label">跟单进度</label>
             <div class="layui-input-block" style="width: 200px">
                 <select name="odd_plan" lay-filter="aihao">
-                    <option value=""></option>
+                    <option value="{{$odd_data['odd_plan']}}" selected>{{$odd_data['odd_plan']}}</option>
                     <option value="1">已成交</option>
                     <option value="2">未成交</option>
                     <option value="3">跟进中</option>
@@ -51,7 +49,7 @@
         <label class="layui-form-label">跟单对象</label>
         <div class="layui-input-block" style="width: 200px">
             <select name="odd_object" lay-filter="aihao">
-                <option value=""></option>
+                <option value="{{$odd_data['odd_object']}}">{{$odd_data['odd_object']}}</option>
                 <option value="1">小阳</option>
                 <option value="2">小李</option>
                 <option value="3">小东</option>
@@ -62,7 +60,7 @@
     <div class="layui-inline layui-form-item layui-form-text">
         <label class="layui-form-label">下次联系</label>
         <div class="layui-input-inline">
-            <input type="text" name="next_time" class="layui-input" id="test1" placeholder="联系时间">
+            <input type="text" name="next_time" class="layui-input" id="test1" placeholder="联系时间" value="{{$odd_data['next_time']}}">
         </div>
         <label class="layui-form-label">提前</label>
         <div class="layui-input-inline">
@@ -80,13 +78,13 @@
     <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">普通文本域</label>
         <div class="layui-input-block">
-            <textarea placeholder="请输入内容" name="details" class="layui-textarea"></textarea>
+            <textarea placeholder="请输入内容" name="details" class="layui-textarea">{{$odd_data['details']}}</textarea>
         </div>
     </div>
 
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+            <button class="layui-btn" lay-submit="" lay-filter="demo1">立即修改</button>
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             &nbsp;&nbsp;&nbsp;<a href="with">返回上页</a>
         </div>
@@ -110,20 +108,13 @@
         //监听提交
         form.on('submit(demo1)', function (data) {
             $.ajax({
-                url:'oddAdd',
+                url:'oddUpdate_to',
                 data:{'_token':'{{csrf_token()}}',data:data.field},
                 type:'post',
                 dataType:'json',
                 success:function(json){
-                    if(json == 1){
-                        layer.msg('添加成功',{icon:1,time:2000},function(){
-                            window.location.href='with';
-                        })
-                    }else {
-                        lauer.msg('添加失败',{icon:2}, function () {
-                            window.location.href=history.go(0);
-                        })
-                    }
+
+                    alert(json);
 
                 }
             })

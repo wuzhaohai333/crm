@@ -47,14 +47,10 @@
       <file leaf-file-name="OddController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/OddController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7526502">
-              <caret line="193" column="24" selection-start-line="193" selection-start-column="24" selection-end-line="193" selection-end-column="24" />
+            <state vertical-scroll-proportion="1.9893993">
+              <caret line="189" column="11" selection-start-line="189" selection-start-column="11" selection-end-line="189" selection-end-column="11" />
               <folding>
-                <element signature="e#262#2107#0#PHP" expanded="false" />
-                <element signature="e#2143#2356#0#PHP" expanded="false" />
-                <element signature="e#2392#3343#0#PHP" expanded="false" />
-                <element signature="e#3376#3736#0#PHP" expanded="false" />
-                <element signature="e#3767#4263#0#PHP" expanded="false" />
+                <element signature="e#54#88#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -64,7 +60,7 @@
         <entry file="file://$PROJECT_DIR$/resources/views/odd/oddUpdate.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-7.159091">
-              <caret line="15" column="31" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="31" />
+              <caret line="13" column="31" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -423,7 +419,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="7" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.135625" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -923,21 +919,17 @@
     <entry file="file://$PROJECT_DIR$/resources/views/odd/oddUpdate.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-7.159091">
-          <caret line="15" column="31" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="31" />
+          <caret line="13" column="31" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/OddController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7526502">
-          <caret line="193" column="24" selection-start-line="193" selection-start-column="24" selection-end-line="193" selection-end-column="24" />
+        <state vertical-scroll-proportion="1.9893993">
+          <caret line="189" column="11" selection-start-line="189" selection-start-column="11" selection-end-line="189" selection-end-column="11" />
           <folding>
-            <element signature="e#262#2107#0#PHP" expanded="false" />
-            <element signature="e#2143#2356#0#PHP" expanded="false" />
-            <element signature="e#2392#3343#0#PHP" expanded="false" />
-            <element signature="e#3376#3736#0#PHP" expanded="false" />
-            <element signature="e#3767#4263#0#PHP" expanded="false" />
+            <element signature="e#54#88#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
