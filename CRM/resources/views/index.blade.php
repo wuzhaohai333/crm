@@ -71,11 +71,14 @@
     </script>
 </head>
 <body>
+
 <div id="win10">
+    <center><b style="color:red;">您的权限：{{$power_name}}</b></center>
     <div class="desktop">
         <div id="win10-shortcuts" class="shortcuts-hidden">
+
             @foreach($data as $value)
-                <div class="shortcut" onclick="Win10.openUrl('/{{$value['power_url']}}','<img class=\'icon\' src=\'/win10ui/img/icon/win10.png\'/>{{$value['power_name']}}')">
+                <div class="shortcut" onclick="Win10.openUrl('crm.cjlll.com/{{$value['power_url']}}','<img class=\'icon\' src=\'/win10ui/img/icon/win10.png\'/>{{$value['power_name']}}')">
                     <img class="icon" src="{{$value['power_img']}}"/>
                     <div class="title">{{$value['power_name']}}</div>
                 </div>
