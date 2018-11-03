@@ -340,14 +340,14 @@
                 </thead>
                 <tbody>
                 @foreach($info as $value)
-                <tr class="add" user_id="{{$value['id']}}">
+                <tr class="add">
                     <td>{{$value['id']}}</td>
                     <td>{{$value['user_name']}}</td>
                     <td>{{$value['user_qq']}}</td>
                     <td>{{$value['user_linkman']}}</td>
                     <td>{{$value['user_qq']}}</td>
                     @if($value['user_utime'] > 3600*24)
-                        <td>{{ceil($value['user_utime']/60)}}天前</td>
+                        <td>{{ceil($value['user_utime']/3600)}}天前</td>
                     @elseif($value['user_utime'] > 3600)
                         <td>{{ceil($value['user_utime']/3600)}}小时前</td>
                     @elseif($value['user_utime'] > 60)

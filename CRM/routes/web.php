@@ -55,7 +55,7 @@ Route::any('/index', 'IndexController@index');
 
 /** 客户管理*/
 
-Route::any('/user', 'userController@user');
+Route::any('/user', 'UserController@user');
 /** 桌面首页*/
 Route::any('/index', 'IndexController@index');
 
@@ -82,22 +82,12 @@ Route::any('/with','OddController@oddList');
 Route::any('/oddAdd_to','OddController@oddAdd_to');
 /**跟单添加*/
 Route::any('/oddAdd','OddController@oddAdd');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/**删除跟单*/
+Route::any('/oddDel','OddController@oddDel');
+/**跟单列表修改*/
+Route::any('/oddUpdate{odd_id}','OddController@oddUpdate');
+/**执行修改*/
+Route::any('oddUpdate_to','OddController@oddUpdate_to');
 
 
 /**订单展示*/
@@ -116,7 +106,10 @@ Route::any('/upType','OrderController@upType');
 Route::any('/product{id}','OrderController@product');
 /** 产品添加*/
 Route::any('/testa','OrderController@productAdd');
-/**删除跟单*/
-Route::any('/oddDel','OddController@oddDel');
-/**跟单列表修改*/
-Route::any('/oddUpdate{odd_id}','OddController@oddUpdate');
+
+
+
+/**合同管理列表*/
+Route::any('/bargain','PactcateController@pactList');
+/**签订的合同页*/
+Route::any('/pactlist_client','PactcateController@pactlist_client');
