@@ -98,6 +98,12 @@ Route::any('/order_mark','OrderController@orderMark');
 Route::any('/orderAdd','OrderController@orderAdd');
 /**订单列表*/
 Route::any('/orderList','OrderController@orderList');
+/**订单删除*/
+Route::any('/orderDel','OrderController@orderDel');
+/**订单修改视图*/
+Route::any('/orderUpdate{id}','OrderController@orderUpdate');
+/**订单修改*/
+Route::any('/orderUpdateDo','OrderController@orderUpdateDo');
 /**订单状态修改*/
 Route::any('/orderType{id}','OrderController@orderType');
 /**修改订单状态*/
@@ -106,6 +112,7 @@ Route::any('/upType','OrderController@upType');
 Route::any('/product{id}','OrderController@product');
 /** 产品添加*/
 Route::any('/testa','OrderController@productAdd');
+
 
 
 

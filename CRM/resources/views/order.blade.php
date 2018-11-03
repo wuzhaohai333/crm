@@ -218,7 +218,7 @@
                                 layer.confirm('确定删除吗', function(index){
 
                                     //向服务端发送删除指令
-                                    $.post('userDel',{'_token':'{{csrf_token()}}',id:data.id,type:1},function(msg){
+                                    $.post('/orderDel',{'_token':'{{csrf_token()}}',id:data.id,type:1},function(msg){
                                         if(msg==1){
                                             layer.msg('删除成功', {
                                                 icon: 1,
@@ -236,7 +236,7 @@
                                 layer.open({
                                     type: 2,
                                     area: ['900px', '500px'],
-                                    content: '/userUpdate'+data.id //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+                                    content: '/orderUpdate'+data.id //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
                                     ,end:function(){
                                         window.location.reload();
                                     }
