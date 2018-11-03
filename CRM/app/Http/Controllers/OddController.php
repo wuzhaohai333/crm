@@ -145,13 +145,13 @@ class OddController extends CommonController
      * 修改
      */
     public function oddUpdate($odd_id){
-        $odd_data = DB::table('crm_odd')
+        $odd_data = json_decode(json_encode(DB::table('crm_odd')
             ->where(['odd_id'=>$odd_id])
             ->join('crm_user','crm_odd.id','=','crm_user.id')
             ->select('crm_odd.*','user_name','salesman_id')
-            ->first();
-        #stdclass object格式 转数组
-        object2array($odd_data);
+            ->first()),true);
+//        #stdclass object格式 转数组
+//        object2array($odd_data);
             #跟单类型
             switch($odd_data['odd_type']){
                 case 1;
@@ -188,7 +188,11 @@ class OddController extends CommonController
                     break;
             }
             #下次联系
+
+            $odd_data['next_time'] = date('Y-m-d H:i:s',$odd_data['next_time']);
+
             //$odd_data['next_time'] = date('Y-m-d H:i:s',$odd_data['next_time']);
+
             #添加时间
             // $odd_data['odd_ctime'] = date('Y-m-d',$odd_data['odd_ctime']);
         return view('odd.oddUpdate',['odd_data'=>$odd_data]);

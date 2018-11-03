@@ -54,6 +54,7 @@ class CommonController extends Controller
                 }
             }
             $request->merge(['index' => $index]); //合并参数 在控制器中可以使用 request()->get('userinfo') 获取
+            $request->merge(['admin' => $admin_id]); //合并参数 在控制器中可以使用 request()->get('userinfo') 获取
 //            $request->attributes->add(['userinfo' => $arr]);//添加参数  在控制器中可以使用request()->get('userinfo') 获取
             return $next($request);
         });
